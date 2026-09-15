@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Portfolio - Fahmida Yasmin</title>
+
+   <!-- Tailwind CSS CDN -->
+   <script src="https://cdn.tailwindcss.com"></script>
+
+   <!-- Tailwind Configuration Script -->
+   <script>
+      tailwind.config = {
+         darkMode: 'class',
+         theme: {
+            extend: {
+               colors: {
+                  first: '#C084FC',
+                  secondary: '#E9D5FF',
+                  title: '#F3E8FF',
+                  text: '#C4B5FD',
+                  body: '#0B0712',
+                  container: '#150D2A',
+               },
+               animation: {
+                  'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                  'float': 'float 4s ease-in-out infinite',
+                  'glow': 'glow 3s ease-in-out infinite alternate',
+                  'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                  'text-reveal': 'textReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+               },
+               keyframes: {
+                  float: {
+                     '0%, 100%': { transform: 'translateY(0px)' },
+                     '50%': { transform: 'translateY(-12px)' },
+                  },
+                  glow: {
+                     '0%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(192, 132, 252, 0.4))' },
+                     '100%': { opacity: '0.8', filter: 'drop-shadow(0 0 35px rgba(192, 132, 252, 0.8))' },
+                  },
+                  fadeUp: {
+                     '0%': { opacity: '0', transform: 'translateY(30px)' },
+                     '100%': { opacity: '1', transform: 'translateY(0)' },
+                  },
+                  textReveal: {
+                     '0%': { opacity: '0', transform: 'translateY(15px)' },
+                     '100%': { opacity: '1', transform: 'translateY(0)' },
+                  }
+               }
+            }
+         }
+      };
+   </script>
+
+   <!-- Remixicon CDN -->
+   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+   <!-- Custom CSS File -->
+   <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body
+   class="bg-body text-text font-sans antialiased selection:bg-first selection:text-black relative overflow-x-hidden">
+
+   <!-- LAVENDER GRADIENT BACKGROUND BLOBS -->
+   <div
+      class="fixed inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(192,132,252,0.18),rgba(255,255,255,0))] pointer-events-none z-0">
+   </div>
+   <div
+      class="fixed top-[-10%] left-[-10%] w-[550px] h-[550px] bg-purple-600/20 rounded-full blur-[140px] animate-pulse-slow pointer-events-none z-0">
+   </div>
+   <div
+      class="fixed bottom-[-10%] right-[-10%] w-[550px] h-[550px] bg-indigo-600/20 rounded-full blur-[140px] animate-pulse-slow pointer-events-none z-0">
+   </div>
+
+   <!-- HEADER / NAV -->
+   <header id="header"
+      class="fixed top-0 left-0 w-full z-50 bg-body/70 backdrop-blur-md border-b border-purple-500/10 transition-all duration-300">
+      <nav class="max-w-6xl mx-auto h-16 flex justify-between items-center px-6">
+         <a href="#"
+            class="text-white text-lg font-bold tracking-wide hover:scale-110 transition-transform duration-300 hover:text-first">
+            Fahmida Yasmin<span class="text-first animate-pulse">.</span>
+         </a>
+
+         <div id="nav-menu"
+            class="fixed max-md:-top-full max-md:left-0 max-md:w-full max-md:bg-container max-md:py-12 max-md:shadow-xl max-md:transition-all duration-300 md:static md:w-auto md:bg-transparent md:py-0">
+            <ul
+               class="flex max-md:flex-col max-md:items-center max-md:gap-y-6 md:flex-row md:gap-x-6 text-xs uppercase tracking-wider font-medium">
+               <li><a href="#home" class="animated-text hover:text-first transition-all duration-300">Home</a></li>
+               <li><a href="#about" class="animated-text hover:text-first transition-all duration-300">About</a></li>
+               <li><a href="#experience"
+                     class="animated-text hover:text-first transition-all duration-300">Experience</a></li>
+               <li><a href="#projects" class="animated-text hover:text-first transition-all duration-300">Projects</a>
+               </li>
+               <li><a href="#papers" class="animated-text hover:text-first transition-all duration-300">Papers</a></li>
+               <li><a href="#achievements"
+                     class="animated-text hover:text-first transition-all duration-300">Achievements</a></li>
+               <li><a href="#contact" class="animated-text hover:text-first transition-all duration-300">Contact</a>
+               </li>
+            </ul>
+         </div>
+
+         <div id="nav-toggle"
+            class="text-2xl cursor-pointer md:hidden text-white hover:text-first hover:rotate-90 transition-all duration-300">
+            <i class="ri-menu-line"></i>
+         </div>
+      </nav>
+   </header>
+
+   <!-- MAIN -->
+   <main class="max-w-6xl mx-auto px-6 pt-24 relative z-10">
+
+      <!-- HERO SECTION -->
+      <section id="home" class="min-h-[85vh] flex flex-col md:flex-row items-center justify-between gap-8 py-12">
+         <div class="space-y-4 max-w-xl animate-fade-up">
+            <span
+               class="text-first font-mono text-sm tracking-widest uppercase inline-block animate-text-reveal hover:translate-x-2 transition-transform duration-300">
+               Hello, I'm
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold text-title leading-tight animated-text cursor-default">Fahmida
+               Yasmin</h1>
+            <h2 class="text-xl md:text-2xl text-first font-medium animate-text-reveal">Computer Science Engineer</h2>
+            <p class="text-text pt-2 leading-relaxed animated-text">
+               Bridging the gap between academic research and scalable software engineering, with expertise in
+               geospatial analytics, blockchain technology, and full-stack development.
+            </p>
+
+            <div class="pt-4 flex flex-wrap gap-4">
+               <a href="#contact"
+                  class="px-6 py-3 bg-first text-black font-semibold rounded-lg hover:shadow-[0_0_25px_rgba(192,132,252,0.8)] hover:scale-105 active:scale-95 transition-all duration-300">
+                  Contact Me
+               </a>
+               <a href="assets/images/Fahmida_Yasmin_CV.pdf" download
+                  class="px-6 py-3 border border-first/50 text-first rounded-lg hover:bg-first/10 hover:border-first hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2">
+                  <i class="ri-download-line animate-bounce"></i> Download CV
+               </a>
+            </div>
+
+            <div class="pt-4 flex items-center gap-4 text-xl text-title">
+               <a href="https://www.linkedin.com/in/fahmida-yasmin-a25676267/" target="_blank" title="LinkedIn"
+                  class="p-2.5 bg-container/60 border border-purple-500/20 rounded-lg text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
+                  <i class="ri-linkedin-fill"></i>
+               </a>
+               <a href="https://github.com/FYasmin12" target="_blank" title="GitHub"
+                  class="p-2.5 bg-container/60 border border-purple-500/20 rounded-lg text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
+                  <i class="ri-github-fill"></i>
+               </a>
+               <a href="mailto:fyasmin1210@gmail.com" title="Email"
+                  class="p-2.5 bg-container/60 border border-purple-500/20 rounded-lg text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
+                  <i class="ri-mail-fill"></i>
+               </a>
+            </div>
+         </div>
+
+         <!-- HERO IMAGE CONTAINER -->
+         <div
+            class="relative w-64 h-64 md:w-80 md:h-80 bg-container/60 backdrop-blur-md rounded-full flex items-center justify-center border border-first/30 shadow-[0_0_50px_rgba(192,132,252,0.25)] animate-float hover:scale-105 transition-transform duration-500 overflow-hidden shrink-0">
+            <img src="assets/images/IMG_1276.JPG" alt="Fahmida Yasmin"
+               class="w-full h-full object-cover rounded-full scale-125 object-center">
+
+         </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section id="about" class="py-20 border-t border-purple-500/10">
+         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">About <span
+               class="text-first">Me</span></h2>
+         <div class="grid md:grid-cols-2 gap-10 items-center">
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-8 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_35px_rgba(192,132,252,0.2)] transition-all duration-500 space-y-4 animate-on-scroll">
+               <p class="leading-relaxed animated-text">
+                  I’m a Computer Science Engineer with a strong academic record and a focus on Machine Learning and
+                  data-driven decision-making. My work bridges the gap between academic research and scalable software
+                  engineering, with experience in geospatial analytics, blockchain technology, and full-stack
+                  development.
+               </p>
+            </div>
+
+            <div class="space-y-4 animate-on-scroll">
+               <h3 class="text-xl font-semibold text-title animated-text">Skills & Technologies</h3>
+               <div class="flex flex-wrap gap-3">
+                  <span
+                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">Machine
+                     Learning</span>
+                  <span
+                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">Geospatial
+                     Analytics</span>
+                  <span
+                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">MERN</span>
+                  <span
+                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">PHP</span>
+                  <span
+                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">Django</span>
+                  <span
+                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">Blockchain</span>
+                  <span
+                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">IoT
+                     Integrations</span>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- EDUCATION SECTION -->
+      <section id="education" class="py-20 border-t border-purple-500/10">
+         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">My <span
+               class="text-first">Education</span></h2>
+         <div class="max-w-3xl mx-auto space-y-6">
+
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll flex gap-4 items-start">
+               <div class="text-2xl text-first p-3 bg-body/60 rounded-xl border border-purple-500/20">
+                  <i class="ri-graduation-cap-line"></i>
+               </div>
+               <div class="space-y-1">
+                  <span class="text-xs text-first font-mono">2022 – Present</span>
+                  <h3 class="text-xl font-bold text-title animated-text">B.Sc. in Computer Science Engineering</h3>
+                  <p class="text-sm text-text/90 font-medium">International Islamic University Chittagong</p>
+                  <span
+                     class="inline-block px-3 py-1 mt-2 text-xs font-semibold text-first bg-first/10 border border-first/30 rounded-full">Current
+                     CGPA: 3.91</span>
+               </div>
+            </div>
+
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll flex gap-4 items-start">
+               <div class="text-2xl text-first p-3 bg-body/60 rounded-xl border border-purple-500/20">
+                  <i class="ri-book-open-line"></i>
+               </div>
+               <div class="space-y-1">
+                  <span class="text-xs text-first font-mono">2019 – 2021</span>
+                  <h3 class="text-xl font-bold text-title animated-text">Higher Secondary Certificate (HSC)</h3>
+                  <p class="text-sm text-text/90 font-medium">Cambrian College</p>
+               </div>
+            </div>
+
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll flex gap-4 items-start">
+               <div class="text-2xl text-first p-3 bg-body/60 rounded-xl border border-purple-500/20">
+                  <i class="ri-school-line"></i>
+               </div>
+               <div class="space-y-1">
+                  <span class="text-xs text-first font-mono">2007 – 2019</span>
+                  <h3 class="text-xl font-bold text-title animated-text">Secondary School Certificate (SSC)</h3>
+                  <p class="text-sm text-text/90 font-medium">Silver Bells Girls High School</p>
+               </div>
+            </div>
+
+         </div>
+      </section>
+
+      <!-- EXPERIENCE SECTION -->
+      <section id="experience" class="py-20 border-t border-purple-500/10">
+         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Work <span
+               class="text-first">Experience</span></h2>
+         <div class="max-w-3xl mx-auto space-y-6">
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
+               <span
+                  class="text-xs text-first font-mono inline-block hover:scale-110 transition-transform duration-300">Aug
+                  2026 – Jan 2027</span>
+               <h3 class="text-xl font-bold text-title mt-1 animated-text">Teaching Assistant</h3>
+               <p class="text-sm text-text/80 mb-2 font-medium">Department of Computer Science and Engineering,
+                  IIUC</p>
+               <p class="text-sm text-text/90 leading-relaxed animated-text">Assisting faculty members and
+                  supporting undergraduate students in core Computer Science courses and lab evaluations at
+                  Chattogram, Bangladesh.</p>
+            </div>
+
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
+               <span
+                  class="text-xs text-first font-mono inline-block hover:scale-110 transition-transform duration-300">Jul
+                  2026 – Sep 2026</span>
+               <h3 class="text-xl font-bold text-title mt-1 animated-text">Machine Learning Intern</h3>
+               <p class="text-sm text-text/80 mb-2 font-medium">FlyRank AI (Remote)</p>
+               <p class="text-sm text-text/90 leading-relaxed animated-text">Worked remotely on data-driven models
+                  and Machine Learning pipelines to enhance AI-driven products and algorithms.</p>
+            </div>
+         </div>
+      </section>
+
+      <!-- PROJECTS SECTION -->
+      <section id="projects" class="py-20 border-t border-purple-500/10">
+         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Featured
+            <span class="text-first">Projects</span>
+         </h2>
+         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md rounded-2xl p-6 border border-purple-500/20 hover:border-first/60 hover:-translate-y-3 hover:shadow-[0_15px_35px_rgba(192,132,252,0.25)] transition-all duration-500 group animate-on-scroll">
+               <div
+                  class="h-44 bg-body/60 rounded-xl mb-6 flex items-center justify-center text-4xl text-first group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                  <i class="ri-smartphone-line"></i>
+               </div>
+               <h3 class="text-xl font-semibold text-title mb-2 group-hover:text-first transition-colors duration-300">
+                  IIUC Nexus</h3>
+               <span class="text-xs text-first font-mono block mb-2">Flutter · Laravel · Appwrite Cloud</span>
+               <p class="text-sm text-text mb-4 leading-relaxed animated-text">Built the official bilingual
+                  super-app of IIUC with secure dual-backend, serverless email verification, and an integrated AI
+                  university assistant.</p>
+            </div>
+
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md rounded-2xl p-6 border border-purple-500/20 hover:border-first/60 hover:-translate-y-3 hover:shadow-[0_15px_35px_rgba(192,132,252,0.25)] transition-all duration-500 group animate-on-scroll">
+               <div
+                  class="h-44 bg-body/60 rounded-xl mb-6 flex items-center justify-center text-4xl text-first group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500">
+                  <i class="ri-shield-keyhole-line"></i>
+               </div>
+               <h3 class="text-xl font-semibold text-title mb-2 group-hover:text-first transition-colors duration-300">
+                  NFC Product Authentication</h3>
+               <span class="text-xs text-first font-mono block mb-2">Web3.js · HTML · CSS · JS · Bootstrap</span>
+               <p class="text-sm text-text mb-4 leading-relaxed animated-text">A decentralized platform featuring
+                  role-based access control, immutable ledgers, and real-time product expiry alerts.</p>
+            </div>
+
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md rounded-2xl p-6 border border-purple-500/20 hover:border-first/60 hover:-translate-y-3 hover:shadow-[0_15px_35px_rgba(192,132,252,0.25)] transition-all duration-500 group animate-on-scroll">
+               <div
+                  class="h-44 bg-body/60 rounded-xl mb-6 flex items-center justify-center text-4xl text-first group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                  <i class="ri-hotel-bed-line"></i>
+               </div>
+               <h3 class="text-xl font-semibold text-title mb-2 group-hover:text-first transition-colors duration-300">
+                  Hotel Management System</h3>
+               <span class="text-xs text-first font-mono block mb-2">Django · HTML · CSS · Bootstrap</span>
+               <p class="text-sm text-text mb-4 leading-relaxed animated-text">A room availability sorting and
+                  booking web app featuring automated email confirmations and clean management workflows.</p>
+            </div>
+         </div>
+      </section>
+
+      <!-- PAPERS SECTION -->
+      <section id="papers" class="py-20 border-t border-purple-500/10">
+         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Publications
+            & <span class="text-first">Research</span></h2>
+         <div class="max-w-3xl mx-auto space-y-6">
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
+               <span class="text-xs text-first font-mono">Ongoing • Undergraduate Thesis</span>
+               <h3 class="text-xl font-semibold text-title my-1 animated-text">Crime Hotspot-Driven Safe
+                  Navigation and IoT Emergency Alert System for Women’s Safety in Bangladesh</h3>
+               <p class="text-sm text-text leading-relaxed animated-text">Designed a spatio-temporal crime risk
+                  scoring model and safety-aware pathfinding algorithm integrated with IoT emergency modules.</p>
+            </div>
+
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
+               <span class="text-xs text-first font-mono">Under Review • Conference Paper</span>
+               <h3 class="text-xl font-semibold text-title my-1 animated-text">UrbaSafe: A Saliency-Guided
+                  Closed-Loop Framework for Urban Safety Perception and Generative Renewal</h3>
+               <p class="text-sm text-text leading-relaxed animated-text">Proposed a dual-model framework
+                  combining ConvNeXt-Tiny perceptual safety scorer with Grad-CAM and Stable Diffusion Inpainting.
+               </p>
+            </div>
+
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
+               <span class="text-xs text-first font-mono">2026 • Under Review</span>
+               <h3 class="text-xl font-semibold text-title my-1 animated-text">A Comparative Study on
+                  Cardiovascular Disease Prediction via Machine Learning and SHAP Interpretability Analysis</h3>
+               <p class="text-sm text-text leading-relaxed animated-text">Applied five ML classifiers with SHAP
+                  explainability analysis to achieve accessible clinical cardiovascular prediction.</p>
+            </div>
+
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
+               <span class="text-xs text-first font-mono">2025 • Taylor & Francis</span>
+               <h3 class="text-xl font-semibold text-title my-1 animated-text">An Efficient NFC Blockchain Model
+                  for Detecting Counterfeit and Expired Products</h3>
+               <p class="text-sm text-text leading-relaxed animated-text">Proposed an NFC and blockchain-based
+                  framework integrated with IoT mechanisms to prevent counterfeit products.</p>
+            </div>
+         </div>
+      </section>
+
+      <!-- ACHIEVEMENTS SECTION -->
+      <section id="achievements" class="py-20 border-t border-purple-500/10">
+         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Achievements
+            & <span class="text-first">Awards</span></h2>
+         <div class="max-w-3xl mx-auto space-y-6">
+            <div
+               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll flex items-center gap-4">
+               <div class="text-3xl text-first group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">
+                  <i class="ri-trophy-line"></i>
+               </div>
+               <div>
+                  <h3 class="text-lg font-bold text-title group-hover:text-first transition-colors duration-300">
+                     Best Female Team Award</h3>
+                  <p class="text-xs text-first font-mono mt-1">Jun 2026 — IIUC CSE Fest 2026</p>
+                  <p class="text-sm text-text mt-2 leading-relaxed animated-text">Awarded for Project Showcase at
+                     International Islamic University Chittagong.</p>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section id="contact" class="py-20 border-t border-purple-500/10">
+         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Get In <span
+               class="text-first">Touch</span></h2>
+         <div
+            class="max-w-lg mx-auto bg-container/40 backdrop-blur-md p-8 rounded-2xl border border-purple-500/20 hover:border-first/40 hover:shadow-[0_15px_35px_rgba(192,132,252,0.15)] transition-all duration-500 animate-on-scroll">
+            <form class="space-y-4" onsubmit="event.preventDefault();">
+               <div class="space-y-1">
+                  <label class="block text-sm text-title animated-text">Name</label>
+                  <input type="text" placeholder="Your Name"
+                     class="w-full bg-body/60 border border-purple-500/20 rounded-lg p-3 text-white focus:outline-none focus:border-first focus:scale-[1.01] focus:shadow-[0_0_15px_rgba(192,132,252,0.3)] transition-all duration-300" />
+               </div>
+               <div class="space-y-1">
+                  <label class="block text-sm text-title animated-text">Email</label>
+                  <input type="email" placeholder="Your Email"
+                     class="w-full bg-body/60 border border-purple-500/20 rounded-lg p-3 text-white focus:outline-none focus:border-first focus:scale-[1.01] focus:shadow-[0_0_15px_rgba(192,132,252,0.3)] transition-all duration-300" />
+               </div>
+               <div class="space-y-1">
+                  <label class="block text-sm text-title animated-text">Message</label>
+                  <textarea rows="4" placeholder="Your Message"
+                     class="w-full bg-body/60 border border-purple-500/20 rounded-lg p-3 text-white focus:outline-none focus:border-first focus:scale-[1.01] focus:shadow-[0_0_15px_rgba(192,132,252,0.3)] transition-all duration-300"></textarea>
+               </div>
+               <button type="submit"
+                  class="w-full py-3 bg-first text-black font-semibold rounded-lg hover:shadow-[0_0_25px_rgba(192,132,252,0.8)] hover:scale-[1.02] active:scale-95 transition-all duration-300">
+                  Send Message
+               </button>
+            </form>
+         </div>
+      </section>
+
+   </main>
+
+   <!-- FOOTER -->
+   <footer class="py-10 border-t border-purple-500/10 relative z-10">
+      <div class="flex justify-center items-center gap-6 text-xl">
+         <a href="https://www.linkedin.com/in/fahmida-yasmin-a25676267/" target="_blank" title="LinkedIn"
+            class="p-3 bg-container/60 border border-purple-500/20 rounded-full text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
+            <i class="ri-linkedin-fill"></i>
+         </a>
+         <a href="https://github.com/FYasmin12" target="_blank" title="GitHub"
+            class="p-3 bg-container/60 border border-purple-500/20 rounded-full text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
+            <i class="ri-github-fill"></i>
+         </a>
+         <a href="mailto:fyasmin1210@gmail.com" title="Email"
+            class="p-3 bg-container/60 border border-purple-500/20 rounded-full text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
+            <i class="ri-mail-fill"></i>
+         </a>
+      </div>
+   </footer>
+
+   <!-- Custom JavaScript -->
+   <script src="assets/js/script.js"></script>
+</body>
+
+</html>
