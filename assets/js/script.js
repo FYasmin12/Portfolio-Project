@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-   // --- Mobile Navigation Logic ---
+  
    const navToggle = document.getElementById('nav-toggle');
    const navMenu = document.getElementById('nav-menu');
    const navIcon = navToggle ? navToggle.querySelector('i') : null;
    const navLinks = document.querySelectorAll('#nav-menu a');
 
-   // Function to close mobile menu
+  
    const closeMenu = () => {
       if (!navMenu) return;
       navMenu.classList.remove('right-0');
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
    };
 
-   // Toggle mobile menu visibility
+  
    if (navToggle && navMenu) {
       navToggle.addEventListener('click', (e) => {
          e.stopPropagation();
@@ -35,12 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
    }
 
-   // Close menu when clicking any nav link
+  
    navLinks.forEach(link => {
       link.addEventListener('click', closeMenu);
    });
 
-   // Close menu when clicking outside of navbar
    document.addEventListener('click', (e) => {
       if (navMenu && navMenu.classList.contains('right-0')) {
          if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
@@ -49,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
    });
 
-   // --- Intersection Observer for Scroll Animations ---
    const observerOptions = {
       root: null,
       threshold: 0.15,
@@ -60,8 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach(entry => {
          if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // Optional: Unobserve after animating once
-            // observerInstance.unobserve(entry.target);
          }
       });
    }, observerOptions);
