@@ -75,43 +75,32 @@
    </div>
 
 
-   <header id="header"
-      class="fixed top-0 left-0 w-full z-50 bg-body/70 backdrop-blur-md border-b border-purple-500/10 transition-all duration-300">
-      <nav class="max-w-6xl mx-auto h-16 flex justify-between items-center px-6">
-         <a href="#"
-            class="text-white text-lg font-bold tracking-wide hover:scale-110 transition-transform duration-300 hover:text-first">
-            Fahmida Yasmin<span class="text-first animate-pulse">.</span>
-         </a>
+  <header id="header" class="fixed top-0 left-0 w-full z-50 bg-body/80 backdrop-blur-md border-b border-purple-500/10 transition-all duration-300">
+   <nav class="max-w-6xl mx-auto h-16 flex justify-between items-center px-6">
+      <a href="#" class="text-white text-lg font-bold tracking-wide hover:scale-110 transition-transform duration-300 hover:text-first">
+         Fahmida Yasmin<span class="text-first animate-pulse">.</span>
+      </a>
 
-         <div id="nav-menu"
-            class="fixed -top-full left-0 w-full bg-container py-12 shadow-xl md:top-0 md:static md:w-auto md:bg-transparent md:py-0 transition-all duration-300">
-            <ul
-               class="flex max-md:flex-col max-md:items-center max-md:gap-y-6 md:flex-row md:gap-x-6 text-xs uppercase tracking-wider font-medium">
-               <li><a href="#home" class="animated-text hover:text-first transition-all duration-300">Home</a></li>
-               <li><a href="#about" class="animated-text hover:text-first transition-all duration-300">About</a></li>
-               <li><a href="#education" class="animated-text hover:text-first transition-all duration-300">Education</a>
-               </li>
-               <li><a href="#experience"
-                     class="animated-text hover:text-first transition-all duration-300">Experience</a></li>
-               <li><a href="#projects" class="animated-text hover:text-first transition-all duration-300">Projects</a>
-               </li>
-               <li><a href="#papers" class="animated-text hover:text-first transition-all duration-300">Publications</a>
-               </li>
-               <li><a href="#achievements"
-                     class="animated-text hover:text-first transition-all duration-300">Achievements</a></li>
-               <li><a href="#contact" class="animated-text hover:text-first transition-all duration-300">Contact</a>
-               </li>
-            </ul>
-         </div>
+      <!-- Mobile Menu (Updated Top Position Logic) -->
+      <div id="nav-menu" class="fixed top-16 -right-full w-full h-[calc(100vh-4rem)] bg-body/95 backdrop-blur-xl p-8 transition-all duration-300 md:static md:w-auto md:h-auto md:bg-transparent md:p-0">
+         <ul class="flex flex-col items-center gap-y-8 md:flex-row md:gap-x-6 text-sm md:text-xs uppercase tracking-wider font-medium">
+            <li><a href="#home" class="animated-text hover:text-first transition-all duration-300">Home</a></li>
+            <li><a href="#about" class="animated-text hover:text-first transition-all duration-300">About</a></li>
+            <li><a href="#education" class="animated-text hover:text-first transition-all duration-300">Education</a></li>
+            <li><a href="#experience" class="animated-text hover:text-first transition-all duration-300">Experience</a></li>
+            <li><a href="#projects" class="animated-text hover:text-first transition-all duration-300">Projects</a></li>
+            <li><a href="#papers" class="animated-text hover:text-first transition-all duration-300">Publications</a></li>
+            <li><a href="#achievements" class="animated-text hover:text-first transition-all duration-300">Achievements</a></li>
+            <li><a href="#contact" class="animated-text hover:text-first transition-all duration-300">Contact</a></li>
+         </ul>
+      </div>
 
-
-         <div id="nav-toggle"
-            class="text-2xl cursor-pointer md:hidden text-white hover:text-first hover:rotate-90 transition-all duration-300">
-            <i class="ri-menu-line"></i>
-         </div>
-      </nav>
-   </header>
-
+      <!-- Toggle Button -->
+      <div id="nav-toggle" class="text-2xl cursor-pointer md:hidden text-white hover:text-first transition-all duration-300">
+         <i id="nav-icon" class="ri-menu-line"></i>
+      </div>
+   </nav>
+</header>
 
    <main class="max-w-6xl mx-auto px-6 pt-24 relative z-10">
 
@@ -252,7 +241,7 @@
          </div>
       </section>
 
-      <!-- EXPERIENCE SECTION -->
+   
       <section id="experience" class="py-20 border-t border-purple-500/10">
          <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Work <span
                class="text-first">Experience</span></h2>
@@ -302,8 +291,7 @@
                   IIUC Nexus</h3>
                <span class="text-xs text-first font-mono block mb-2">Flutter · Laravel · Appwrite Cloud</span>
                <p class="text-sm text-text mb-4 leading-relaxed animated-text">A
-                  IIUC community platform with secure dual-backend, serverless email verification, and an integrated AI
-                  university assistant.</p>
+                  IIUC community platform with secure dual-backend, serverless email verification, and an integrated AI university assistant.</p>
 
 
                <div class="flex items-center gap-3 mt-4">
