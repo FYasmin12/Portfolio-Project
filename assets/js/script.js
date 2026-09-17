@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-   // Mobile Navigation Toggle
+   
    const navToggle = document.getElementById('nav-toggle');
    const navMenu = document.getElementById('nav-menu');
 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
    });
 
-   // Intersection Observer for Scroll Animations
+
    const observerOptions = {
       root: null,
       threshold: 0.15,

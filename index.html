@@ -6,10 +6,10 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <title>Portfolio - Fahmida Yasmin</title>
    <link rel="icon" href="assets/images/pie-chart.png" type="image/x-icon" />
-   <!-- Tailwind CSS CDN -->
+
    <script src="https://cdn.tailwindcss.com"></script>
 
-   <!-- Tailwind Configuration Script -->
+
    <script>
       tailwind.config = {
          darkMode: 'class',
@@ -53,17 +53,17 @@
       };
    </script>
 
-   <!-- Remixicon CDN -->
+
    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
 
-   <!-- Custom CSS File -->
+
    <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body
    class="bg-body text-text font-sans antialiased selection:bg-first selection:text-black relative overflow-x-hidden">
 
-   <!-- LAVENDER GRADIENT BACKGROUND BLOBS -->
+
    <div
       class="fixed inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(192,132,252,0.18),rgba(255,255,255,0))] pointer-events-none z-0">
    </div>
@@ -74,7 +74,7 @@
       class="fixed bottom-[-10%] right-[-10%] w-[550px] h-[550px] bg-indigo-600/20 rounded-full blur-[140px] animate-pulse-slow pointer-events-none z-0">
    </div>
 
-   <!-- HEADER / NAV -->
+
    <header id="header"
       class="fixed top-0 left-0 w-full z-50 bg-body/70 backdrop-blur-md border-b border-purple-500/10 transition-all duration-300">
       <nav class="max-w-6xl mx-auto h-16 flex justify-between items-center px-6">
@@ -84,7 +84,7 @@
          </a>
 
          <div id="nav-menu"
-            class="fixed max-md:-top-full max-md:left-0 max-md:w-full max-md:bg-container max-md:py-12 max-md:shadow-xl max-md:transition-all duration-300 md:static md:w-auto md:bg-transparent md:py-0">
+            class="fixed -top-full left-0 w-full bg-container py-12 shadow-xl md:top-0 md:static md:w-auto md:bg-transparent md:py-0 transition-all duration-300">
             <ul
                class="flex max-md:flex-col max-md:items-center max-md:gap-y-6 md:flex-row md:gap-x-6 text-xs uppercase tracking-wider font-medium">
                <li><a href="#home" class="animated-text hover:text-first transition-all duration-300">Home</a></li>
@@ -104,6 +104,7 @@
             </ul>
          </div>
 
+
          <div id="nav-toggle"
             class="text-2xl cursor-pointer md:hidden text-white hover:text-first hover:rotate-90 transition-all duration-300">
             <i class="ri-menu-line"></i>
@@ -111,11 +112,11 @@
       </nav>
    </header>
 
-   <!-- MAIN -->
+
    <main class="max-w-6xl mx-auto px-6 pt-24 relative z-10">
 
-      <!-- HERO SECTION -->
-      <section id="home" class="min-h-[85vh] flex flex-col md:flex-row items-center justify-between gap-8 py-12">
+
+      <section id="home" class="min-h-[85vh] flex flex-col md:flex-row items-center justify-be gap-8 py-12">
          <div class="space-y-4 max-w-xl animate-fade-up">
             <span
                class="text-first font-mono text-sm tracking-widest uppercase inline-block animate-text-reveal hover:translate-x-2 transition-transform duration-300">
@@ -156,14 +157,14 @@
             </div>
          </div>
 
-         <!-- HERO IMAGE CONTAINER -->
+
          <div
             class="relative w-80 h-80 md:w-[400px] md:h-[400px] bg-container/60 backdrop-blur-md rounded-full flex items-center justify-center border border-first/30 shadow-[0_0_50px_rgba(192,132,252,0.25)]  hover:scale-105 transition-transform duration-500 overflow-hidden">
-            <img src="assets/images/IMG_1276.JPG" alt="Hero Image" class="w-full h-full object-cover rounded-full scale-110">
+            <img src="assets/images/IMG_1276.JPG" alt="Hero Image"
+               class="w-full h-full object-cover rounded-full scale-110">
          </div>
       </section>
 
-      <!-- ABOUT SECTION -->
       <section id="about" class="py-20 border-t border-purple-500/10">
          <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">About <span
                class="text-first">Me</span></h2>
@@ -203,7 +204,7 @@
          </div>
       </section>
 
-      <!-- EDUCATION SECTION -->
+
       <section id="education" class="py-20 border-t border-purple-500/10">
          <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">My <span
                class="text-first">Education</span></h2>
@@ -282,7 +283,7 @@
          </div>
       </section>
 
-      <!-- PROJECTS SECTION -->
+
       <section id="projects" class="py-20 border-t border-purple-500/10">
          <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Featured
             <span class="text-first">Projects</span>
@@ -291,7 +292,7 @@
             <div
                class="animated-box bg-container/40 backdrop-blur-md rounded-2xl p-6 border border-purple-500/20 hover:border-first/60 hover:-translate-y-3 hover:shadow-[0_15px_35px_rgba(192,132,252,0.25)] transition-all duration-500 group animate-on-scroll">
 
-               <!-- Image Container using iiuc_nexus.png -->
+
                <div
                   class="h-48 w-full bg-body/60 rounded-xl mb-6 overflow-hidden flex items-center justify-center group-hover:scale-105 transition-all duration-500">
                   <img src="assets/images/iiuc_nexus.jpeg" alt="IIUC Nexus App" class="w-full h-full object-cover">
@@ -304,7 +305,7 @@
                   IIUC community platform with secure dual-backend, serverless email verification, and an integrated AI
                   university assistant.</p>
 
-               <!-- Action Links for APK Download and GitHub Code -->
+
                <div class="flex items-center gap-3 mt-4">
                   <a href="https://drive.google.com/drive/u/0/folders/1CtutYE4ue9lxueNeHXYcYnTGWKRLOzeR" target="_blank"
                      rel="noopener noreferrer"
@@ -334,7 +335,7 @@
                   provide real-time product verification to let an user know whether a product is authentic or not,
                   along with expiry alerts.</p>
 
-               <!-- Added Action Links -->
+
                <div class="flex items-center gap-3 mt-4">
                   <a href="https://nfc-auth.42web.io/index.php" target="_blank" rel="noopener noreferrer"
                      class="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-first border border-first/40 rounded-lg hover:bg-first hover:text-black transition-all duration-300">
@@ -347,7 +348,7 @@
                   </a>
                </div>
             </div>
-            <!-- Hotel Management System Project Card -->
+
             <div
                class="animated-box bg-container/40 backdrop-blur-md rounded-2xl p-6 border border-purple-500/20 hover:border-first/60 hover:-translate-y-3 hover:shadow-[0_15px_35px_rgba(192,132,252,0.25)] transition-all duration-500 group animate-on-scroll flex flex-col justify-between">
                <div>
@@ -367,7 +368,7 @@
                <div class="flex items-center gap-3 mt-4">
 
 
-                  <!-- VIEW LIVE BUTTON -->
+
                   <a href="https://fyasmin12.github.io/Hotel-Management-System/" target="_blank"
                      class="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-first border border-first/40 rounded-lg hover:bg-first hover:text-black hover:shadow-[0_0_15px_rgba(192,132,252,0.6)] transition-all duration-300 w-fit">
                      View Live <i class="ri-external-link-line"></i>
@@ -381,7 +382,7 @@
             </div>
       </section>
 
-      <!-- PAPERS SECTION -->
+
       <section id="papers" class="py-20 border-t border-purple-500/10">
          <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Publications
             & <span class="text-first">Research</span></h2>
@@ -425,14 +426,14 @@
          </div>
       </section>
 
-      <!-- ACHIEVEMENTS SECTION -->
+    
       <section id="achievements" class="py-20 border-t border-purple-500/10">
          <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Achievements
             & <span class="text-first">Awards</span></h2>
          <div class="max-w-3xl mx-auto space-y-6">
             <div
                class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll flex items-center gap-4">
-               
+
                <div>
                   <h3 class="text-lg font-bold text-title group-hover:text-first transition-colors duration-300">
                      Best Female Team Award</h3>
@@ -444,7 +445,6 @@
          </div>
       </section>
 
-      <!-- CONTACT SECTION -->
       <section id="contact" class="py-20 border-t border-purple-500/10">
          <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Get In <span
                class="text-first">Touch</span></h2>
@@ -476,7 +476,7 @@
 
    </main>
 
-   <!-- FOOTER -->
+   
    <footer class="py-10 border-t border-purple-500/10 relative z-10">
       <div class="flex justify-center items-center gap-6 text-xl">
          <a href="https://www.linkedin.com/in/fahmida-yasmin-a25676267/" target="_blank" title="LinkedIn"
@@ -494,7 +494,7 @@
       </div>
    </footer>
 
-   <!-- Custom JavaScript -->
+
    <script src="assets/js/script.js"></script>
 </body>
 
