@@ -3,9 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.getElementById('header');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* =====================================================
-     1. Mobile navigation menu
-     ===================================================== */
   const navToggle = document.getElementById('nav-toggle');
   const navMenu = document.getElementById('nav-menu');
   const navIcon = document.getElementById('nav-icon');
@@ -41,9 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* =====================================================
-     2. Dark / light theme toggle (remembers the choice)
-     ===================================================== */
   const themeToggleBtn = document.getElementById('theme-toggle');
   const themeIcon = document.getElementById('theme-icon');
   const htmlEl = document.documentElement;
@@ -70,9 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* =====================================================
-     3. Sliders (Projects and Certificates) with autoplay
-     ===================================================== */
   const initSlider = (wrapperId, swiperSelector) => {
     const wrapper = document.getElementById(wrapperId);
     if (!wrapper || typeof Swiper === 'undefined') return;
@@ -100,9 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSlider('projects-slider', '.projectsSwiper');
   initSlider('certificates-slider', '.certificatesSwiper');
 
-  /* =====================================================
-     4. Scroll reveal animations
-     ===================================================== */
+
   const visibleObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
@@ -129,9 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.reveal, .reveal-item').forEach((el) => revealObserver.observe(el));
 
-  /* =====================================================
-     5. Scroll progress bar, navbar shadow, back-to-top
-     ===================================================== */
   const progressBar = document.getElementById('scroll-progress');
   const backTop = document.getElementById('back-to-top');
 
@@ -154,9 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* =====================================================
-     6. Active nav link (scroll spy)
-     ===================================================== */
+
   const sections = document.querySelectorAll('main section[id]');
   const spy = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -170,10 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sections.forEach((section) => spy.observe(section));
 
-  /* =====================================================
-     7. Typing effect in the hero
-     ===================================================== */
-  const typed = document.getElementById('typed');
+ 
   if (typed && !reduceMotion) {
     const words = ['Full Stack Developer', 'Machine Learning Enthusiast', 'Aspiring Researcher'];
     let w = 0;
@@ -199,9 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(tick, 2200);
   }
 
-  /* =====================================================
-     8. Card spotlight (glow follows the mouse)
-     ===================================================== */
+ 
   const cards = document.querySelectorAll('main .bg-container-adaptive.rounded-2xl, main .bg-container-adaptive.rounded-3xl');
   cards.forEach((card) => card.classList.add('spot'));
 
