@@ -1,488 +1,742 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark">
 
 <head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>Portfolio - Fahmida Yasmin</title>
-   <link rel="icon" href="assets/images/pie-chart.png" type="image/x-icon" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fahmida Yasmin | Full Stack Developer</title>
 
-   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Apply the saved theme before the page paints (fixes day/night on refresh) -->
+  <script>
+    try { document.documentElement.className = localStorage.getItem('theme') || 'dark'; } catch (e) { }
+  </script>
 
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            first: '#C084FC',
+            secondary: '#E9D5FF',
+            title: '#F3E8FF',
+            text: '#C4B5FD',
+            body: '#0B0712',
+            container: '#150D2A',
+          },
+          animation: {
+            'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 4s ease-in-out infinite',
+            'glow': 'glow 3s ease-in-out infinite alternate',
+            'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'text-reveal': 'textReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            glow: {
+              '0%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(192, 132, 252, 0.4))' },
+              '100%': { opacity: '0.8', filter: 'drop-shadow(0 0 35px rgba(192, 132, 252, 0.8))' },
+            },
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            textReveal: {
+              '0%': { opacity: '0', transform: 'translateY(15px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
 
-   <script>
-      tailwind.config = {
-         theme: {
-            extend: {
-               colors: {
-                  first: '#C084FC',
-                  secondary: '#E9D5FF',
-                  title: '#F3E8FF',
-                  text: '#C4B5FD',
-                  body: '#0B0712',
-                  container: '#150D2A',
-               },
-               animation: {
-                  'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                  'float': 'float 4s ease-in-out infinite',
-                  'glow': 'glow 3s ease-in-out infinite alternate',
-                  'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                  'text-reveal': 'textReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-               },
-               keyframes: {
-                  float: {
-                     '0%, 100%': { transform: 'translateY(0px)' },
-                     '50%': { transform: 'translateY(-12px)' },
-                  },
-                  glow: {
-                     '0%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(192, 132, 252, 0.4))' },
-                     '100%': { opacity: '0.8', filter: 'drop-shadow(0 0 35px rgba(192, 132, 252, 0.8))' },
-                  },
-                  fadeUp: {
-                     '0%': { opacity: '0', transform: 'translateY(30px)' },
-                     '100%': { opacity: '1', transform: 'translateY(0)' },
-                  },
-                  textReveal: {
-                     '0%': { opacity: '0', transform: 'translateY(15px)' },
-                     '100%': { opacity: '1', transform: 'translateY(0)' },
-                  }
-               }
-            }
-         }
-      };
-   </script>
+  <!-- Swiper CSS for sliders -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
 
-   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
-
-
-   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
-<body
-   class="bg-body text-text font-sans antialiased selection:bg-first selection:text-black relative overflow-x-hidden">
+<body class="font-sans antialiased selection:bg-first selection:text-black relative overflow-x-hidden pt-20">
 
 
-   <div
-      class="fixed inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(192,132,252,0.18),rgba(255,255,255,0))] pointer-events-none z-0">
-   </div>
-   <div
-      class="fixed top-[-10%] left-[-10%] w-[550px] h-[550px] bg-purple-600/20 rounded-full blur-[140px] animate-pulse-slow pointer-events-none z-0">
-   </div>
-   <div
-      class="fixed bottom-[-10%] right-[-10%] w-[550px] h-[550px] bg-indigo-600/20 rounded-full blur-[140px] animate-pulse-slow pointer-events-none z-0">
-   </div>
+  <div id="scroll-progress"></div>
+  <button id="back-to-top" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
+  <div
+    class="fixed inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(192,132,252,0.12),rgba(255,255,255,0))] pointer-events-none z-0">
+  </div>
+  <div
+    class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[140px] animate-pulse-slow pointer-events-none z-0">
+  </div>
+  <div
+    class="fixed bottom-[-10%] right-[-10%] w-[450px] h-[450px] bg-fuchsia-600/10 rounded-full blur-[140px] animate-pulse-slow pointer-events-none z-0"
+    style="animation-delay:1s"></div>
 
 
-  <header id="header" class="fixed top-0 left-0 w-full z-50 bg-body/80 backdrop-blur-md border-b border-purple-500/10 transition-all duration-300">
-   <nav class="max-w-6xl mx-auto h-16 flex justify-between items-center px-6">
-      <a href="#" class="text-white text-lg font-bold tracking-wide hover:scale-110 transition-transform duration-300 hover:text-first">
-         Fahmida Yasmin<span class="text-first animate-pulse">.</span>
+  <header id="header"
+    class="fixed top-0 left-0 w-full z-50 bg-container-adaptive/85 backdrop-blur-xl border-b border-adaptive transition-all duration-300 shadow-sm">
+    <nav class="w-full px-6 md:px-12 h-20 flex justify-between items-center max-w-7xl mx-auto">
+
+      <a href="#"
+        class="text-title-adaptive text-2xl font-bold tracking-tight hover:text-first transition-colors flex items-center gap-0.5">
+        Fahmida
       </a>
 
-      <!-- Mobile Menu (Updated Top Position Logic) -->
-      <div id="nav-menu" class="fixed top-16 -right-full w-full h-[calc(100vh-4rem)] bg-body/95 backdrop-blur-xl p-8 transition-all duration-300 md:static md:w-auto md:h-auto md:bg-transparent md:p-0">
-         <ul class="flex flex-col items-center gap-y-8 md:flex-row md:gap-x-6 text-sm md:text-xs uppercase tracking-wider font-medium">
-            <li><a href="#home" class="animated-text hover:text-first transition-all duration-300">Home</a></li>
-            <li><a href="#about" class="animated-text hover:text-first transition-all duration-300">About</a></li>
-            <li><a href="#education" class="animated-text hover:text-first transition-all duration-300">Education</a></li>
-            <li><a href="#experience" class="animated-text hover:text-first transition-all duration-300">Experience</a></li>
-            <li><a href="#projects" class="animated-text hover:text-first transition-all duration-300">Projects</a></li>
-            <li><a href="#papers" class="animated-text hover:text-first transition-all duration-300">Publications</a></li>
-            <li><a href="#achievements" class="animated-text hover:text-first transition-all duration-300">Achievements</a></li>
-            <li><a href="#contact" class="animated-text hover:text-first transition-all duration-300">Contact</a></li>
-         </ul>
+      <div id="nav-menu"
+        class="fixed top-20 -right-full w-full bg-container-adaptive/95 backdrop-blur-2xl p-8 border-b border-adaptive transition-all duration-300 md:static md:w-auto md:bg-transparent md:border-none md:p-0">
+        <ul
+          class="flex flex-col items-center gap-y-5 md:flex-row md:gap-x-8 text-xs uppercase tracking-wider font-semibold">
+          <li><a href="#home" class="hover:text-first-adaptive transition-colors py-1">Home</a></li>
+          <li><a href="#about" class="hover:text-first-adaptive transition-colors py-1">About</a></li>
+          <li><a href="#education" class="hover:text-first-adaptive transition-colors py-1">Education</a></li>
+          <li><a href="#experience" class="hover:text-first-adaptive transition-colors py-1">Experience</a></li>
+          <li><a href="#projects" class="hover:text-first-adaptive transition-colors py-1">Projects</a></li>
+          <li><a href="#papers" class="hover:text-first-adaptive transition-colors py-1">Publications</a></li>
+          <li><a href="#achievements" class="hover:text-first-adaptive transition-colors py-1">Achievements</a></li>
+          <li><a href="#contact" class="hover:text-first-adaptive transition-colors py-1">Contact</a></li>
+        </ul>
       </div>
 
-      <!-- Toggle Button -->
-      <div id="nav-toggle" class="text-2xl cursor-pointer md:hidden text-white hover:text-first transition-all duration-300">
-         <i id="nav-icon" class="ri-menu-line"></i>
+      <div class="flex items-center gap-4">
+        <button id="theme-toggle" aria-label="Toggle Theme"
+          class="p-2.5 rounded-xl border border-adaptive bg-icon-box-adaptive text-first-adaptive hover:scale-105 transition-all">
+          <i id="theme-icon" class="ri-moon-line text-lg"></i>
+        </button>
+
+        <div id="nav-toggle"
+          class="text-2xl cursor-pointer md:hidden text-title-adaptive hover:text-first-adaptive transition-colors">
+          <i id="nav-icon" class="ri-menu-line"></i>
+        </div>
       </div>
-   </nav>
-</header>
-
-   <main class="max-w-6xl mx-auto px-6 pt-24 relative z-10">
+    </nav>
+  </header>
 
 
-      <section id="home" class="min-h-[85vh] flex flex-col md:flex-row items-center justify-be gap-8 py-12">
-         <div class="space-y-4 max-w-xl animate-fade-up">
+  <main class="max-w-5xl mx-auto px-6 md:px-10 pt-10 relative z-10 space-y-24">
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-[75vh] flex flex-col md:flex-row items-center justify-between gap-12 py-8">
+      <div class="space-y-6 max-w-xl">
+
+        <span
+          class="block opacity-0 animate-text-reveal text-first-adaptive font-mono text-xs tracking-widest uppercase font-semibold"
+          style="animation-delay:0.1s">
+          Hello, I'm
+        </span>
+
+        <h1 class="opacity-0 animate-text-reveal text-4xl md:text-5xl font-extrabold text-title-adaptive leading-tight"
+          style="animation-delay:0.3s">
+          Fahmida Yasmin
+        </h1>
+
+        <h2 class="opacity-0 animate-text-reveal text-2xl text-first-adaptive font-semibold"
+          style="animation-delay:0.5s">
+          <span id="typed">Full Stack Developer</span><span class="typing-cursor">|</span>
+        </h2>
+
+        <div class="opacity-0 animate-text-reveal" style="animation-delay:0.7s">
+          <p class="pt-1 text-base leading-relaxed opacity-90">
+            Bridging the gap between academic research and scalable software engineering, with expertise in geospatial
+            analytics, blockchain technology, and full-stack web application architecture.
+          </p>
+        </div>
+
+        <div class="opacity-0 animate-text-reveal pt-3 flex flex-wrap gap-4" style="animation-delay:0.9s">
+          <a href="#contact"
+            class="px-8 py-4 bg-first text-black text-sm md:text-base font-bold rounded-xl hover:shadow-[0_0_20px_rgba(192,132,252,0.5)] hover:scale-105 active:scale-95 transition-all">
+            Get In Touch
+          </a>
+          <a href="assets/images/Fahmida_Yasmin_CV.pdf" download
+            class="px-8 py-4 border-2 border-first/60 text-first-adaptive text-sm md:text-base font-bold rounded-xl hover:bg-first/10 hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5">
+            <i class="ri-download-line text-lg animate-bounce"></i> Download CV
+          </a>
+        </div>
+
+        <div class="opacity-0 animate-text-reveal pt-2 flex items-center gap-3.5 text-lg" style="animation-delay:1.1s">
+          <a href="https://www.linkedin.com/in/fahmida-yasmin-a25676267/" target="_blank" title="LinkedIn"
+            class="p-3 bg-container-adaptive border border-adaptive rounded-xl text-first-adaptive hover:text-white hover:bg-first hover:scale-110 transition-all">
+            <i class="ri-linkedin-fill"></i>
+          </a>
+          <a href="https://github.com/FYasmin12" target="_blank" title="GitHub"
+            class="p-3 bg-container-adaptive border border-adaptive rounded-xl text-first-adaptive hover:text-white hover:bg-first hover:scale-110 transition-all">
+            <i class="ri-github-fill"></i>
+          </a>
+          <a href="mailto:fyasmin1210@gmail.com" title="Email"
+            class="p-3 bg-container-adaptive border border-adaptive rounded-xl text-first-adaptive hover:text-white hover:bg-first hover:scale-110 transition-all">
+            <i class="ri-mail-fill"></i>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="relative shrink-0 animate-float">
+        <div class="absolute inset-0 rounded-full bg-first/30 blur-2xl animate-glow"></div>
+        <div
+          class="relative w-72 h-72 md:w-96 md:h-96 bg-container-adaptive rounded-full flex items-center justify-center border-2 border-first/30 shadow-[0_0_40px_rgba(192,132,252,0.15)] hover:scale-105 transition-transform duration-500 overflow-hidden">
+          <img src="assets/images/IMG_1276.JPG" alt="Fahmida Yasmin" class="w-full h-full object-cover rounded-full" />
+        </div>
+      </div>
+    </section>
+
+
+    <section id="about" class="py-8">
+      <h2 class="reveal opacity-0 text-3xl font-bold text-title-adaptive text-center mb-8">
+        About <span class="text-first-adaptive">Me</span>
+      </h2>
+      <div class="grid md:grid-cols-2 gap-8 items-stretch">
+        <div
+          class="reveal-item opacity-0 bg-container-adaptive py-10 px-8 rounded-2xl border border-adaptive shadow-sm flex flex-col justify-center">
+          <p class="leading-relaxed text-base opacity-95">
+            I am a Full Stack Developer and Computer Science student focused on building scalable, data-driven
+            applications. My expertise covers software engineering, machine learning, geospatial analytics, and
+            blockchain technology.
+          </p>
+        </div>
+
+        <div
+          class="reveal-item opacity-0 bg-container-adaptive py-8 px-8 rounded-2xl border border-adaptive shadow-sm space-y-4 flex flex-col justify-center">
+          <h3 class="text-lg font-bold text-title-adaptive">Skills & Technologies</h3>
+          <div class="flex flex-wrap gap-2.5">
             <span
-               class="text-first font-mono text-sm tracking-widest uppercase inline-block animate-text-reveal hover:translate-x-2 transition-transform duration-300">
-               Hello, I'm
-            </span>
-            <h1 class="text-4xl md:text-6xl font-bold text-title leading-tight animated-text cursor-default">Fahmida
-               Yasmin</h1>
-            <h2 class="text-xl md:text-2xl text-first font-medium animate-text-reveal">Computer Science Engineer</h2>
-            <p class="text-text pt-2 leading-relaxed animated-text">
-               Bridging the gap between academic research and scalable software engineering, with expertise in
-               geospatial analytics, blockchain technology, and full-stack development.
+              class="px-4 py-2 bg-icon-box-adaptive rounded-xl text-xs font-semibold border border-adaptive hover:border-first hover:scale-105 hover:text-first-adaptive transition-all cursor-default">Full-Stack
+              Development</span>
+            <span
+              class="px-4 py-2 bg-icon-box-adaptive rounded-xl text-xs font-semibold border border-adaptive hover:border-first hover:scale-105 hover:text-first-adaptive transition-all cursor-default">Machine
+              Learning</span>
+            <span
+              class="px-4 py-2 bg-icon-box-adaptive rounded-xl text-xs font-semibold border border-adaptive hover:border-first hover:scale-105 hover:text-first-adaptive transition-all cursor-default">MERN
+              Stack</span>
+            <span
+              class="px-4 py-2 bg-icon-box-adaptive rounded-xl text-xs font-semibold border border-adaptive hover:border-first hover:scale-105 hover:text-first-adaptive transition-all cursor-default">PHP
+              & Laravel</span>
+            <span
+              class="px-4 py-2 bg-icon-box-adaptive rounded-xl text-xs font-semibold border border-adaptive hover:border-first hover:scale-105 hover:text-first-adaptive transition-all cursor-default">Django</span>
+            <span
+              class="px-4 py-2 bg-icon-box-adaptive rounded-xl text-xs font-semibold border border-adaptive hover:border-first hover:scale-105 hover:text-first-adaptive transition-all cursor-default">Blockchain</span>
+            <span
+              class="px-4 py-2 bg-icon-box-adaptive rounded-xl text-xs font-semibold border border-adaptive hover:border-first hover:scale-105 hover:text-first-adaptive transition-all cursor-default">IoT
+              Integrations</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="education" class="py-8">
+      <h2 class="reveal opacity-0 text-3xl font-bold text-title-adaptive text-center mb-8">
+        My <span class="text-first-adaptive">Education</span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div
+          class="reveal-item opacity-0 bg-container-adaptive p-6 rounded-2xl border border-adaptive hover:border-first/50 transition-all flex flex-col justify-between space-y-4 shadow-sm">
+          <div class="space-y-3">
+            <div
+              class="w-12 h-12 text-first-adaptive bg-icon-box-adaptive rounded-xl border border-adaptive flex items-center justify-center text-2xl">
+              <i class="ri-graduation-cap-line"></i>
+            </div>
+            <span class="text-xs text-first-adaptive font-mono font-semibold block">2022 – Present</span>
+            <h3 class="text-base font-bold text-title-adaptive leading-snug">B.Sc. in Computer Science Engineering</h3>
+          </div>
+          <p class="text-xs opacity-90 font-medium pt-2 border-t border-adaptive">International Islamic University
+            Chittagong</p>
+        </div>
+
+        <div
+          class="reveal-item opacity-0 bg-container-adaptive p-6 rounded-2xl border border-adaptive hover:border-first/50 transition-all flex flex-col justify-between space-y-4 shadow-sm">
+          <div class="space-y-3">
+            <div
+              class="w-12 h-12 text-first-adaptive bg-icon-box-adaptive rounded-xl border border-adaptive flex items-center justify-center text-2xl">
+              <i class="ri-book-open-line"></i>
+            </div>
+            <span class="text-xs text-first-adaptive font-mono font-semibold block">2019 – 2021</span>
+            <h3 class="text-base font-bold text-title-adaptive leading-snug">Higher Secondary Certificate (HSC)</h3>
+          </div>
+          <p class="text-xs opacity-90 font-medium pt-2 border-t border-adaptive">Cambrian College</p>
+        </div>
+
+        <div
+          class="reveal-item opacity-0 bg-container-adaptive p-6 rounded-2xl border border-adaptive hover:border-first/50 transition-all flex flex-col justify-between space-y-4 shadow-sm">
+          <div class="space-y-3">
+            <div
+              class="w-12 h-12 text-first-adaptive bg-icon-box-adaptive rounded-xl border border-adaptive flex items-center justify-center text-2xl">
+              <i class="ri-school-line"></i>
+            </div>
+            <span class="text-xs text-first-adaptive font-mono font-semibold block">2007 – 2019</span>
+            <h3 class="text-base font-bold text-title-adaptive leading-snug">Secondary School Certificate (SSC)</h3>
+          </div>
+          <p class="text-xs opacity-90 font-medium pt-2 border-t border-adaptive">Silver Bells Girls High School</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="experience" class="py-8">
+      <h2 class="reveal opacity-0 text-3xl font-bold text-title-adaptive text-center mb-8">
+        Work <span class="text-first-adaptive">Experience</span>
+      </h2>
+      <div class="space-y-5">
+
+        <div
+          class="reveal-item opacity-0 bg-container-adaptive p-6 rounded-2xl border border-adaptive hover:border-first/40 transition-all shadow-sm">
+          <span class="text-xs text-first-adaptive font-mono font-semibold">Aug 2026 – Jan 2027</span>
+          <h3 class="text-lg font-bold text-title-adaptive mt-1">Teaching Assistant</h3>
+          <p class="text-xs md:text-sm opacity-80 mb-2 font-medium">Department of Computer Science and Engineering, IIUC
+          </p>
+          <p class="text-sm opacity-90 leading-relaxed">
+            Assisting faculty members and supporting undergraduate students in core Computer Science courses and lab
+            evaluations.
+          </p>
+        </div>
+
+        <div
+          class="reveal-item opacity-0 bg-container-adaptive p-6 rounded-2xl border border-adaptive hover:border-first/40 transition-all shadow-sm">
+          <span class="text-xs text-first-adaptive font-mono font-semibold">Jul 2026 – Sep 2026</span>
+          <h3 class="text-lg font-bold text-title-adaptive mt-1">Machine Learning Intern</h3>
+          <p class="text-xs md:text-sm opacity-80 mb-2 font-medium">FlyRank AI (Remote)</p>
+          <p class="text-sm opacity-90 leading-relaxed">
+            Worked remotely on data-driven models and Machine Learning pipelines to enhance AI-driven products.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="projects" class="py-8">
+      <h2 class="reveal opacity-0 text-3xl font-bold text-title-adaptive text-center mb-8">
+        Featured <span class="text-first-adaptive">Projects</span>
+      </h2>
+
+      <div id="projects-slider" class="reveal-item opacity-0 projects-slider-wrapper">
+        <div class="swiper projectsSwiper pb-12">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide !h-auto">
+              <div
+                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
+                <div
+                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                  <img src="assets/images/iiuc_nexus.jpeg" alt="IIUC Nexus App"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
+                  <div>
+                    <span class="text-xs text-first-adaptive font-mono font-semibold">Flutter · Laravel ·
+                      Appwrite</span>
+                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">IIUC Nexus</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                      An IIUC community platform with secure dual-backend, serverless email verification, and an
+                      integrated AI university assistant.
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 pt-1">
+                    <a href="https://drive.google.com/drive/u/0/folders/1CtutYE4ue9lxueNeHXYcYnTGWKRLOzeR"
+                      target="_blank" rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                      Download APK <i class="ri-download-2-line"></i>
+                    </a>
+                    <a href="https://github.com/Noshi26/iiuc_nexsus_empowering_links" target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                      Code <i class="ri-github-line"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="swiper-slide !h-auto">
+              <div
+                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
+                <div
+                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                  <img src="assets/images/nfc-auth.png" alt="NFC Product Authentication"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
+                  <div>
+                    <span class="text-xs text-first-adaptive font-mono font-semibold">PHP · MySQL · JS ·
+                      Bootstrap</span>
+                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">NFC Product Authentication</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                      An NFC based web platform built to provide real-time product verification to let a user know
+                      whether a product is authentic or not, along with expiry alerts.
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 pt-1">
+                    <a href="https://nfc-auth.42web.io/index.php" target="_blank" rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                      View Live <i class="ri-external-link-line"></i>
+                    </a>
+                    <a href="https://github.com/FYasmin12/NFC-Product-Authentication" target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                      Code <i class="ri-github-line"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide !h-auto">
+              <div
+                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
+                <div
+                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                  <img src="assets/images/hotel.png" alt="Hotel Management System"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
+                  <div>
+                    <span class="text-xs text-first-adaptive font-mono font-semibold">Django · HTML · CSS ·
+                      Bootstrap</span>
+                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">Hotel Management System</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                      A hotel management system with room availability sorting and booking, including automated email
+                      confirmations.
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 pt-1">
+                    <a href="https://fyasmin12.github.io/Hotel-Management-System/" target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                      View Live <i class="ri-external-link-line"></i>
+                    </a>
+                    <a href="https://github.com/FYasmin12/Hotel-Management-System" target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                      Code <i class="ri-github-line"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </section>
+
+
+    <section id="papers" class="py-8">
+      <h2 class="reveal opacity-0 text-3xl font-bold text-title-adaptive text-center mb-8">
+        Publications & <span class="text-first-adaptive">Research</span>
+      </h2>
+      <div class="space-y-5">
+
+        <div
+          class="reveal-item opacity-0 bg-container-adaptive p-6 rounded-2xl border border-adaptive hover:border-first/40 transition-all shadow-sm">
+          <span class="text-xs text-first-adaptive font-mono font-semibold">Under Review • Conference Paper</span>
+          <h3 class="text-base font-bold text-title-adaptive my-1">
+            UrbaSafe: A Saliency-Guided Closed-Loop Framework for Urban Safety Perception and Generative Renewal
+          </h3>
+          <p class="text-xs md:text-sm opacity-90 leading-relaxed">
+            Proposed a dual-model framework combining ConvNeXt-Tiny perceptual safety scorer with Grad-CAM and Stable
+            Diffusion Inpainting.
+          </p>
+        </div>
+
+        <div
+          class="reveal-item opacity-0 bg-container-adaptive p-6 rounded-2xl border border-adaptive hover:border-first/40 transition-all shadow-sm">
+          <span class="text-xs text-first-adaptive font-mono font-semibold">Under Review • Conference Paper</span>
+          <h3 class="text-base font-bold text-title-adaptive my-1">
+            A Comparative Study on Cardiovascular Disease Prediction via Machine Learning and SHAP Interpretability
+            Analysis
+          </h3>
+          <p class="text-xs md:text-sm opacity-90 leading-relaxed">
+            Applied five ML classifiers with SHAP explainability analysis to achieve accessible clinical cardiovascular
+            prediction.
+          </p>
+        </div>
+
+        <div
+          class="reveal-item opacity-0 bg-container-adaptive p-6 rounded-2xl border border-adaptive hover:border-first/40 transition-all shadow-sm">
+          <span class="text-xs text-first-adaptive font-mono font-semibold">2025 • Taylor & Francis / IDAA 2025</span>
+          <h3 class="text-base font-bold text-title-adaptive my-1">
+            An Efficient NFC Blockchain Model for Detecting Counterfeit and Expired Products
+          </h3>
+          <p class="text-xs md:text-sm opacity-90 leading-relaxed">
+            Proposed an NFC and blockchain-based framework integrated with IoT mechanisms to prevent counterfeit
+            products.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="achievements" class="py-8">
+      <h2 class="reveal opacity-0 text-3xl font-bold text-title-adaptive text-center mb-8">
+        Achievements & <span class="text-first-adaptive">Certificates</span>
+      </h2>
+
+      <div id="certificates-slider" class="reveal-item opacity-0 projects-slider-wrapper">
+        <div class="swiper certificatesSwiper pb-12">
+          <div class="swiper-wrapper">
+
+
+            <div class="swiper-slide !h-auto">
+              <div
+                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
+                <div
+                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                  <img src="assets/images/best female.png" alt="Best Female Team Award"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onerror="this.src='https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=800&auto=format&fit=crop'" />
+                </div>
+                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
+                  <div>
+                    <span class="text-xs text-first-adaptive font-mono font-semibold">Jun 2026 · IIUC CSE Fest
+                      2026</span>
+                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">Best Female Team Award</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                      Awarded for securing the Best Female Team Award in Project Showcase Competition at IIUC CSE Fest
+                      2026 for IIUC Nexus.
+                    </p>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <a href="assets/certificates/Best Female_IIUC Nexus.pdf" target="_blank"
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                      View PDF <i class="ri-file-pdf-line"></i>
+                    </a>
+                    <a href="assets/certificates/Best Female_IIUC Nexus.pdf" download
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                      Download <i class="ri-download-line"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="swiper-slide !h-auto">
+              <div
+                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
+                <div
+                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                  <img src="assets/images/research seminar.png" alt="AI Seminar Certificate of Participation"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onerror="this.src='https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop'" />
+                </div>
+                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
+                  <div>
+                    <span class="text-xs text-first-adaptive font-mono font-semibold">2026 · IIUC CSE Fest 2026</span>
+                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">AI Seminar Participation</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                      Certificate of Participation for the AI Seminar "Trust, Transparency, Optimization: Rethinking AI
+                      Systems for Real-World Adoption", organized by IIUC Computer Club.
+                    </p>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <a href="assets/certificates/C223210_Fahmida Yasmin.pdf" target="_blank"
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                      View PDF <i class="ri-file-pdf-line"></i>
+                    </a>
+                    <a href="assets/certificates/C223210_Fahmida Yasmin.pdf" download
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                      Download <i class="ri-download-line"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="swiper-slide !h-auto">
+              <div
+                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
+                <div
+                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                  <img src="assets/images/nfc paper.png" alt="IDAA 2025 Certificate"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop'" />
+                </div>
+                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
+                  <div>
+                    <span class="text-xs text-first-adaptive font-mono font-semibold">Dec 2025 · IDAA 2025 / Taylor &
+                      Francis</span>
+                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">IDAA 2025 Paper Acceptance</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                      Certificate of Appreciation for paper "An Efficient NFC Blockchain Model For Detecting Counterfeit
+                      And Expired Products" presented at IDAA 2025.
+                    </p>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <a href="assets/certificates/An Efficient NFC Blockchain Model for Detecting Counterfeit and Expired Products.pdf"
+                      target="_blank"
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                      View PDF <i class="ri-file-pdf-line"></i>
+                    </a>
+                    <a href="assets/certificates/An Efficient NFC Blockchain Model for Detecting Counterfeit and Expired Products.pdf"
+                      download
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                      Download <i class="ri-download-line"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="swiper-slide !h-auto">
+              <div
+                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
+                <div
+                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                  <img src="assets/images/mern 1day workshop.png" alt="MERN Stack Workshop Certificate"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onerror="this.src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop'" />
+                </div>
+                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
+                  <div>
+                    <span class="text-xs text-first-adaptive font-mono font-semibold">Oct 2024 · Creative IT & IEEE CS
+                      BDC</span>
+                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">MERN Stack Workshop</h3>
+                    <p class="text-sm opacity-90 leading-relaxed">
+                      Successfully completed MERN Stack Development Workshop organized by Creative IT Institute in
+                      association with IEEE CS BDC Team SPARK.
+                    </p>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <a href="assets/certificates/MERN Stack development Workshop.pdf" target="_blank"
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                      View PDF <i class="ri-file-pdf-line"></i>
+                    </a>
+                    <a href="assets/certificates/MERN Stack Development Workshop.pdf" download
+                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                      Download <i class="ri-download-line"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </section>
+
+
+    <section id="contact" class="py-8">
+      <h2 class="reveal opacity-0 text-3xl font-bold text-title-adaptive text-center mb-8">
+        Get In <span class="text-first-adaptive">Touch</span>
+      </h2>
+
+      <div
+        class="reveal-item opacity-0 bg-container-adaptive p-8 md:p-10 rounded-2xl border border-adaptive shadow-xl grid md:grid-cols-2 gap-10">
+
+        <div class="space-y-6 flex flex-col justify-between">
+          <div>
+            <h3 class="text-2xl font-bold text-title-adaptive mb-2">Let's connect!</h3>
+            <p class="text-sm opacity-90 leading-relaxed mb-6">
+              I am open to discuss new projects, creative ideas, or opportunities in software engineering and machine
+              learning.
             </p>
 
-            <div class="pt-4 flex flex-wrap gap-4">
-               <a href="#contact"
-                  class="px-6 py-3 bg-first text-black font-semibold rounded-lg hover:shadow-[0_0_25px_rgba(192,132,252,0.8)] hover:scale-105 active:scale-95 transition-all duration-300">
-                  Contact Me
-               </a>
-               <a href="assets/images/Fahmida_Yasmin_CV.pdf" download
-                  class="px-6 py-3 border border-first/50 text-first rounded-lg hover:bg-first/10 hover:border-first hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2">
-                  <i class="ri-download-line animate-bounce"></i> Download CV
-               </a>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 bg-icon-box-adaptive rounded-xl border border-adaptive flex items-center justify-center text-first-adaptive text-xl shrink-0">
+                  <i class="ri-mail-line"></i>
+                </div>
+                <div>
+                  <span class="text-xs opacity-70 uppercase tracking-wider block">Email</span>
+                  <a href="mailto:fyasmin1210@gmail.com"
+                    class="text-sm font-semibold text-title-adaptive hover:text-first-adaptive transition-colors">fyasmin1210@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 bg-icon-box-adaptive rounded-xl border border-adaptive flex items-center justify-center text-first-adaptive text-xl shrink-0">
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <div>
+                  <span class="text-xs opacity-70 uppercase tracking-wider block">Location</span>
+                  <span class="text-sm font-semibold text-title-adaptive">Chittagong, Bangladesh</span>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div class="pt-4 flex items-center gap-4 text-xl text-title">
-               <a href="https://www.linkedin.com/in/fahmida-yasmin-a25676267/" target="_blank" title="LinkedIn"
-                  class="p-2.5 bg-container/60 border border-purple-500/20 rounded-lg text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
-                  <i class="ri-linkedin-fill"></i>
-               </a>
-               <a href="https://github.com/FYasmin12" target="_blank" title="GitHub"
-                  class="p-2.5 bg-container/60 border border-purple-500/20 rounded-lg text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
-                  <i class="ri-github-fill"></i>
-               </a>
-               <a href="mailto:fyasmin1210@gmail.com" title="Email"
-                  class="p-2.5 bg-container/60 border border-purple-500/20 rounded-lg text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
-                  <i class="ri-mail-fill"></i>
-               </a>
-            </div>
-         </div>
+          <div class="flex gap-3">
+            <a href="https://www.linkedin.com/in/fahmida-yasmin-a25676267/" target="_blank"
+              class="p-3 bg-icon-box-adaptive border border-adaptive rounded-xl text-first-adaptive hover:bg-first hover:text-black transition-all">
+              <i class="ri-linkedin-fill text-lg"></i>
+            </a>
+            <a href="https://github.com/FYasmin12" target="_blank"
+              class="p-3 bg-icon-box-adaptive border border-adaptive rounded-xl text-first-adaptive hover:bg-first hover:text-black transition-all">
+              <i class="ri-github-fill text-lg"></i>
+            </a>
+          </div>
+        </div>
 
 
-         <div
-            class="relative w-80 h-80 md:w-[400px] md:h-[400px] bg-container/60 backdrop-blur-md rounded-full flex items-center justify-center border border-first/30 shadow-[0_0_50px_rgba(192,132,252,0.25)]  hover:scale-105 transition-transform duration-500 overflow-hidden">
-            <img src="assets/images/IMG_1276.JPG" alt="Hero Image"
-               class="w-full h-full object-cover rounded-full scale-110">
-         </div>
-      </section>
+        <form id="contact-form" action="https://formspree.io/f/xbglwpol" method="POST" class="space-y-4">
+          <div>
+            <label class="block text-xs uppercase font-semibold text-title-adaptive mb-2">Your Name</label>
+            <input type="text" name="name" required placeholder="John Doe" data-fs-field
+              class="w-full px-4 py-3 bg-icon-box-adaptive border border-adaptive rounded-xl text-sm focus:outline-none focus:border-first transition-colors text-title-adaptive" />
+          </div>
+          <div>
+            <label class="block text-xs uppercase font-semibold text-title-adaptive mb-2">Your Email</label>
+            <input type="email" name="email" required placeholder="john@example.com" data-fs-field
+              class="w-full px-4 py-3 bg-icon-box-adaptive border border-adaptive rounded-xl text-sm focus:outline-none focus:border-first transition-colors text-title-adaptive" />
+          </div>
+          <div>
+            <label class="block text-xs uppercase font-semibold text-title-adaptive mb-2">Message</label>
+            <textarea name="message" rows="4" required placeholder="Write your message here..." data-fs-field
+              class="w-full px-4 py-3 bg-icon-box-adaptive border border-adaptive rounded-xl text-sm focus:outline-none focus:border-first transition-colors text-title-adaptive resize-none"></textarea>
+          </div>
+          <button type="submit" data-fs-submit-btn
+            class="w-full py-4 bg-first text-black font-bold rounded-xl hover:bg-first-hover transition-all text-sm disabled:opacity-60">
+            Send Message <i class="ri-send-plane-fill ml-1"></i>
+          </button>
 
-      <section id="about" class="py-20 border-t border-purple-500/10">
-         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">About <span
-               class="text-first">Me</span></h2>
-         <div class="grid md:grid-cols-2 gap-10 items-center">
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-8 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_35px_rgba(192,132,252,0.2)] transition-all duration-500 space-y-4 animate-on-scroll">
-               <p class="leading-relaxed animated-text">
-                  I’m a Computer Science Engineer with a strong academic record and a focus on Machine Learning and
-                  data-driven decision-making. My work bridges the gap between academic research and scalable software
-                  engineering, with experience in geospatial analytics, blockchain technology, and full-stack
-                  development.
-               </p>
-            </div>
-
-            <div class="space-y-4 animate-on-scroll">
-               <h3 class="text-xl font-semibold text-title animated-text">Skills & Technologies</h3>
-               <div class="flex flex-wrap gap-3">
-                  <span
-                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">Machine
-                     Learning</span>
-                  <span
-                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">Research
-                     & Acedemic Writng</span>
-                  <span
-                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">MERN</span>
-                  <span
-                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">PHP</span>
-                  <span
-                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">Django</span>
-                  <span
-                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">Blockchain</span>
-                  <span
-                     class="px-4 py-2 bg-container/50 backdrop-blur-md rounded-lg text-sm border border-purple-500/20 hover:border-first hover:scale-110 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300 cursor-pointer">IoT
-                     Integrations</span>
-               </div>
-            </div>
-         </div>
-      </section>
-
-
-      <section id="education" class="py-20 border-t border-purple-500/10">
-         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">My <span
-               class="text-first">Education</span></h2>
-         <div class="max-w-3xl mx-auto space-y-6">
-
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll flex gap-4 items-start">
-               <div class="text-2xl text-first p-3 bg-body/60 rounded-xl border border-purple-500/20">
-                  <i class="ri-graduation-cap-line"></i>
-               </div>
-               <div class="space-y-1">
-                  <span class="text-xs text-first font-mono">2022 – Present</span>
-                  <h3 class="text-xl font-bold text-title animated-text">B.Sc. in Computer Science Engineering</h3>
-                  <p class="text-sm text-text/90 font-medium">International Islamic University Chittagong</p>
-                  <span
-                     class="inline-block px-3 py-1 mt-2 text-xs font-semibold text-first bg-first/10 border border-first/30 rounded-full">Current
-                     CGPA: 3.91</span>
-               </div>
-            </div>
-
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll flex gap-4 items-start">
-               <div class="text-2xl text-first p-3 bg-body/60 rounded-xl border border-purple-500/20">
-                  <i class="ri-book-open-line"></i>
-               </div>
-               <div class="space-y-1">
-                  <span class="text-xs text-first font-mono">2019 – 2021</span>
-                  <h3 class="text-xl font-bold text-title animated-text">Higher Secondary Certificate (HSC)</h3>
-                  <p class="text-sm text-text/90 font-medium">Cambrian College</p>
-               </div>
-            </div>
-
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll flex gap-4 items-start">
-               <div class="text-2xl text-first p-3 bg-body/60 rounded-xl border border-purple-500/20">
-                  <i class="ri-school-line"></i>
-               </div>
-               <div class="space-y-1">
-                  <span class="text-xs text-first font-mono">2007 – 2019</span>
-                  <h3 class="text-xl font-bold text-title animated-text">Secondary School Certificate (SSC)</h3>
-                  <p class="text-sm text-text/90 font-medium">Silver Bells Girls High School</p>
-               </div>
-            </div>
-
-         </div>
-      </section>
-
-   
-      <section id="experience" class="py-20 border-t border-purple-500/10">
-         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Work <span
-               class="text-first">Experience</span></h2>
-         <div class="max-w-3xl mx-auto space-y-6">
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
-               <span
-                  class="text-xs text-first font-mono inline-block hover:scale-110 transition-transform duration-300">Aug
-                  2026 – Jan 2027</span>
-               <h3 class="text-xl font-bold text-title mt-1 animated-text">Teaching Assistant</h3>
-               <p class="text-sm text-text/80 mb-2 font-medium">Department of Computer Science and Engineering,
-                  IIUC</p>
-               <p class="text-sm text-text/90 leading-relaxed animated-text">Assisting faculty members and
-                  supporting undergraduate students in core Computer Science courses and lab evaluations at
-                  Chattogram, Bangladesh.</p>
-            </div>
-
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
-               <span
-                  class="text-xs text-first font-mono inline-block hover:scale-110 transition-transform duration-300">Jul
-                  2026 – Sep 2026</span>
-               <h3 class="text-xl font-bold text-title mt-1 animated-text">Machine Learning Intern</h3>
-               <p class="text-sm text-text/80 mb-2 font-medium">FlyRank AI (Remote)</p>
-               <p class="text-sm text-text/90 leading-relaxed animated-text">Worked remotely on data-driven models
-                  and Machine Learning pipelines to enhance AI-driven products and algorithms.</p>
-            </div>
-         </div>
-      </section>
-
-
-      <section id="projects" class="py-20 border-t border-purple-500/10">
-         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Featured
-            <span class="text-first">Projects</span>
-         </h2>
-         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md rounded-2xl p-6 border border-purple-500/20 hover:border-first/60 hover:-translate-y-3 hover:shadow-[0_15px_35px_rgba(192,132,252,0.25)] transition-all duration-500 group animate-on-scroll">
-
-
-               <div
-                  class="h-48 w-full bg-body/60 rounded-xl mb-6 overflow-hidden flex items-center justify-center group-hover:scale-105 transition-all duration-500">
-                  <img src="assets/images/iiuc_nexus.jpeg" alt="IIUC Nexus App" class="w-full h-full object-cover">
-               </div>
-
-               <h3 class="text-xl font-semibold text-title mb-2 group-hover:text-first transition-colors duration-300">
-                  IIUC Nexus</h3>
-               <span class="text-xs text-first font-mono block mb-2">Flutter · Laravel · Appwrite Cloud</span>
-               <p class="text-sm text-text mb-4 leading-relaxed animated-text">A
-                  IIUC community platform with secure dual-backend, serverless email verification, and an integrated AI university assistant.</p>
-
-
-               <div class="flex items-center gap-3 mt-4">
-                  <a href="https://drive.google.com/drive/u/0/folders/1CtutYE4ue9lxueNeHXYcYnTGWKRLOzeR" target="_blank"
-                     rel="noopener noreferrer"
-                     class="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-first border border-first/40 rounded-lg hover:bg-first hover:text-black transition-all duration-300">
-                     Download APK <i class="ri-download-2-line"></i>
-                  </a>
-                  <a href="https://github.com/Noshi26/iiuc_nexsus_empowering_links" target="_blank"
-                     rel="noopener noreferrer"
-                     class="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-title border border-purple-500/30 rounded-lg hover:bg-purple-500/20 transition-all duration-300">
-                     Code <i class="ri-github-line"></i>
-                  </a>
-               </div>
-            </div>
-
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md rounded-2xl p-6 border border-purple-500/20 hover:border-first/60 hover:-translate-y-3 hover:shadow-[0_15px_35px_rgba(192,132,252,0.25)] transition-all duration-500 group animate-on-scroll">
-
-               <div
-                  class="h-48 w-full bg-body/60 rounded-xl mb-6 overflow-hidden flex items-center justify-center group-hover:scale-105 transition-all duration-500">
-                  <img src="assets/images/nfc-auth.png" alt="NFC Product Authentication"
-                     class="w-full h-full object-cover">
-               </div>
-               <h3 class="text-xl font-semibold text-title mb-2 group-hover:text-first transition-colors duration-300">
-                  NFC Product Authentication</h3>
-               <span class="text-xs text-first font-mono block mb-2">PHP · MySQL · HTML · CSS · JS · Bootstrap</span>
-               <p class="text-sm text-text mb-4 leading-relaxed animated-text">An NFC based web platform built to
-                  provide real-time product verification to let an user know whether a product is authentic or not,
-                  along with expiry alerts.</p>
-
-
-               <div class="flex items-center gap-3 mt-4">
-                  <a href="https://nfc-auth.42web.io/index.php" target="_blank" rel="noopener noreferrer"
-                     class="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-first border border-first/40 rounded-lg hover:bg-first hover:text-black transition-all duration-300">
-                     View Live <i class="ri-external-link-line"></i>
-                  </a>
-                  <a href="https://github.com/FYasmin12/NFC-Product-Authentication" target="_blank"
-                     rel="noopener noreferrer"
-                     class="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-title border border-purple-500/30 rounded-lg hover:bg-purple-500/20 transition-all duration-300">
-                     Code <i class="ri-github-line"></i>
-                  </a>
-               </div>
-            </div>
-
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md rounded-2xl p-6 border border-purple-500/20 hover:border-first/60 hover:-translate-y-3 hover:shadow-[0_15px_35px_rgba(192,132,252,0.25)] transition-all duration-500 group animate-on-scroll flex flex-col justify-between">
-               <div>
-                  <div
-                     class="h-48 w-full bg-body/60 rounded-xl mb-6 overflow-hidden flex items-center justify-center group-hover:scale-105 transition-all duration-500">
-                     <img src="assets/images/hotel.png" alt="Hotel Management System"
-                        class="w-full h-full object-cover">
-                  </div>
-                  <h3
-                     class="text-xl font-semibold text-title mb-2 group-hover:text-first transition-colors duration-300">
-                     Hotel Management System</h3>
-                  <span class="text-xs text-first font-mono block mb-2">Django · HTML · CSS · Bootstrap</span>
-                  <p class="text-sm text-text mb-6 leading-relaxed animated-text">A hotel management system with room
-                     availability sorting and
-                     booking, including automated email confirmations.</p>
-               </div>
-               <div class="flex items-center gap-3 mt-4">
-
-
-
-                  <a href="https://fyasmin12.github.io/Hotel-Management-System/" target="_blank"
-                     class="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-first border border-first/40 rounded-lg hover:bg-first hover:text-black hover:shadow-[0_0_15px_rgba(192,132,252,0.6)] transition-all duration-300 w-fit">
-                     View Live <i class="ri-external-link-line"></i>
-                  </a>
-                  <a href="https://github.com/FYasmin12/Hotel-Management-System" target="_blank"
-                     rel="noopener noreferrer"
-                     class="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-title border border-purple-500/30 rounded-lg hover:bg-purple-500/20 transition-all duration-300">
-                     Code <i class="ri-github-line"></i>
-                  </a>
-               </div>
-            </div>
-      </section>
-
-
-      <section id="papers" class="py-20 border-t border-purple-500/10">
-         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Publications
-            & <span class="text-first">Research</span></h2>
-         <div class="max-w-3xl mx-auto space-y-6">
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
-               <span class="text-xs text-first font-mono">Ongoing • Undergraduate Thesis</span>
-               <h3 class="text-xl font-semibold text-title my-1 animated-text">Crime Hotspot-Driven Safe
-                  Navigation and IoT Emergency Alert System for Women’s Safety in Bangladesh</h3>
-               <p class="text-sm text-text leading-relaxed animated-text">Designed a spatio-temporal crime risk
-                  scoring model and safety-aware pathfinding algorithm integrated with IoT emergency modules.</p>
-            </div>
-
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
-               <span class="text-xs text-first font-mono">Under Review • Conference Paper</span>
-               <h3 class="text-xl font-semibold text-title my-1 animated-text">UrbaSafe: A Saliency-Guided
-                  Closed-Loop Framework for Urban Safety Perception and Generative Renewal</h3>
-               <p class="text-sm text-text leading-relaxed animated-text">Proposed a dual-model framework
-                  combining ConvNeXt-Tiny perceptual safety scorer with Grad-CAM and Stable Diffusion Inpainting.
-               </p>
-            </div>
-
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
-               <span class="text-xs text-first font-mono">Under Review • Conference Paper</span>
-               <h3 class="text-xl font-semibold text-title my-1 animated-text">A Comparative Study on
-                  Cardiovascular Disease Prediction via Machine Learning and SHAP Interpretability Analysis</h3>
-               <p class="text-sm text-text leading-relaxed animated-text">Applied five ML classifiers with SHAP
-                  explainability analysis to achieve accessible clinical cardiovascular prediction.</p>
-            </div>
-
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll">
-               <span class="text-xs text-first font-mono">2025 • Taylor & Francis</span>
-               <h3 class="text-xl font-semibold text-title my-1 animated-text">An Efficient NFC Blockchain Model
-                  for Detecting Counterfeit and Expired Products</h3>
-               <p class="text-sm text-text leading-relaxed animated-text">Proposed an NFC and blockchain-based
-                  framework integrated with IoT mechanisms to prevent counterfeit products.</p>
-            </div>
-         </div>
-      </section>
-
-    
-      <section id="achievements" class="py-20 border-t border-purple-500/10">
-         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Achievements
-            & <span class="text-first">Awards</span></h2>
-         <div class="max-w-3xl mx-auto space-y-6">
-            <div
-               class="animated-box bg-container/40 backdrop-blur-md p-6 rounded-2xl border border-purple-500/20 hover:border-first/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(192,132,252,0.2)] transition-all duration-500 animate-on-scroll flex items-center gap-4">
-
-               <div>
-                  <h3 class="text-lg font-bold text-title group-hover:text-first transition-colors duration-300">
-                     Best Female Team Award</h3>
-                  <p class="text-xs text-first font-mono mt-1">Jun 2026 — IIUC CSE Fest 2026</p>
-                  <p class="text-sm text-text mt-2 leading-relaxed animated-text">Awarded for Project Showcase at
-                     International Islamic University Chittagong.</p>
-               </div>
-            </div>
-         </div>
-      </section>
-
-      <section id="contact" class="py-20 border-t border-purple-500/10">
-         <h2 class="text-3xl font-bold text-title text-center mb-12 animate-on-scroll animated-text">Get In <span
-               class="text-first">Touch</span></h2>
-         <div
-            class="max-w-lg mx-auto bg-container/40 backdrop-blur-md p-8 rounded-2xl border border-purple-500/20 hover:border-first/40 hover:shadow-[0_15px_35px_rgba(192,132,252,0.15)] transition-all duration-500 animate-on-scroll">
-            <form class="space-y-4" onsubmit="event.preventDefault();">
-               <div class="space-y-1">
-                  <label class="block text-sm text-title animated-text">Name</label>
-                  <input type="text" placeholder="Your Name"
-                     class="w-full bg-body/60 border border-purple-500/20 rounded-lg p-3 text-white focus:outline-none focus:border-first focus:scale-[1.01] focus:shadow-[0_0_15px_rgba(192,132,252,0.3)] transition-all duration-300" />
-               </div>
-               <div class="space-y-1">
-                  <label class="block text-sm text-title animated-text">Email</label>
-                  <input type="email" placeholder="Your Email"
-                     class="w-full bg-body/60 border border-purple-500/20 rounded-lg p-3 text-white focus:outline-none focus:border-first focus:scale-[1.01] focus:shadow-[0_0_15px_rgba(192,132,252,0.3)] transition-all duration-300" />
-               </div>
-               <div class="space-y-1">
-                  <label class="block text-sm text-title animated-text">Message</label>
-                  <textarea rows="4" placeholder="Your Message"
-                     class="w-full bg-body/60 border border-purple-500/20 rounded-lg p-3 text-white focus:outline-none focus:border-first focus:scale-[1.01] focus:shadow-[0_0_15px_rgba(192,132,252,0.3)] transition-all duration-300"></textarea>
-               </div>
-               <button type="submit"
-                  class="w-full py-3 bg-first text-black font-semibold rounded-lg hover:shadow-[0_0_25px_rgba(192,132,252,0.8)] hover:scale-[1.02] active:scale-95 transition-all duration-300">
-                  Send Message
-               </button>
-            </form>
-         </div>
-      </section>
-
-   </main>
-
-   
-   <footer class="py-10 border-t border-purple-500/10 relative z-10">
-      <div class="flex justify-center items-center gap-6 text-xl">
-         <a href="https://www.linkedin.com/in/fahmida-yasmin-a25676267/" target="_blank" title="LinkedIn"
-            class="p-3 bg-container/60 border border-purple-500/20 rounded-full text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
-            <i class="ri-linkedin-fill"></i>
-         </a>
-         <a href="https://github.com/FYasmin12" target="_blank" title="GitHub"
-            class="p-3 bg-container/60 border border-purple-500/20 rounded-full text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
-            <i class="ri-github-fill"></i>
-         </a>
-         <a href="mailto:fyasmin1210@gmail.com" title="Email"
-            class="p-3 bg-container/60 border border-purple-500/20 rounded-full text-first hover:text-white hover:border-first hover:scale-110 hover:shadow-[0_0_15px_rgba(192,132,252,0.5)] transition-all duration-300">
-            <i class="ri-mail-fill"></i>
-         </a>
+          <p data-fs-success class="empty:hidden text-sm text-first text-center"></p>
+          <p data-fs-error class="empty:hidden text-sm text-red-400 text-center"></p>
+        </form>
       </div>
-   </footer>
+    </section>
+
+  </main>
 
 
-   <script src="assets/js/script.js"></script>
+  <footer class="mt-20 border-t border-adaptive bg-container-adaptive/50 py-8 relative z-10">
+    <div
+      class="max-w-5xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs opacity-80">
+      <p>© 2026 Fahmida Yasmin. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#contact-form', formId: 'xbglwpol' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 
 </html>

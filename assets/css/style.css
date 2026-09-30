@@ -1,7 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+
+/* --- Base Setup & Utility Styles --- */
+:root {
+  --color-body: #0B0712;
+  --color-container: #150D2A;
+  --color-title: #F3E8FF;
+  --color-text: #C4B5FD;
+  --color-first: #C084FC;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--color-body);
+  color: var(--color-text);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0712;
+}
+::-webkit-scrollbar-thumb {
+  background: #150D2A;
+  border-radius: 4px;
+  border: 1px solid rgba(192, 132, 252, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C084FC;
+}
+
+/* --- Scroll Animation Classes --- */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .animate-on-scroll.visible {
@@ -9,7 +45,7 @@
   transform: translateY(0);
 }
 
-
+/* --- Interactive Hover Effects --- */
 .animated-text {
   transition: all 0.3s ease;
 }
@@ -32,9 +68,313 @@
   width: 100%;
   height: 2px;
   background: linear-gradient(90deg, transparent, #C084FC, transparent);
-  transition: 0.5s;
+  transition: left 0.5s ease;
 }
 
 .animated-box:hover::after {
   left: 100%;
 }
+
+/* --- Adaptive Dark/Light Mode Variables --- */
+.dark {
+  --color-body: #0B0712;
+  --color-container: #150D2A;
+  --color-title: #F3E8FF;
+  --color-text: #C4B5FD;
+  --border-adaptive: rgba(192, 132, 252, 0.15);
+}
+
+.light {
+  --color-body: #F8FAFC;
+  --color-container: #FFFFFF;
+  --color-title: #0F172A;
+  --color-text: #475569;
+  --border-adaptive: rgba(0, 0, 0, 0.1);
+}
+
+.bg-body-adaptive { background-color: var(--color-body); }
+.bg-container-adaptive { background-color: var(--color-container); }
+.text-title-adaptive { color: var(--color-title); }
+.text-text-adaptive { color: var(--color-text); }
+.border-adaptive { border-color: var(--border-adaptive); }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; }
+  .opacity-0 { opacity: 1 !important; }
+}
+/* =====================================================
+   9. Extra animations
+   ===================================================== */
+
+/* scroll progress bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  z-index: 60;
+  background: linear-gradient(90deg, #A855F7, #C084FC, #E9D5FF);
+  box-shadow: 0 0 10px rgba(192, 132, 252, 0.7);
+  transition: width 0.1s linear;
+}
+
+/* navbar shadow after scrolling */
+#header.scrolled {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* active nav link with growing underline */
+#nav-menu a { position: relative; }
+#nav-menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 0;
+  background: var(--color-first);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+#nav-menu a:hover::after,
+#nav-menu a.active::after { width: 100%; }
+#nav-menu a.active { color: var(--color-first); }
+
+/* typing cursor */
+.typing-cursor {
+  margin-left: 2px;
+  font-weight: 300;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* section heading: underline grows when the heading appears */
+h2.reveal::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 0;
+  margin: 0.6rem auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--color-first), transparent);
+}
+h2.reveal.animate-fade-up::after {
+  animation: lineGrow 0.9s 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes lineGrow { to { width: 110px; } }
+
+/* skill chips pop in one by one (backwards fill keeps the hover scale working) */
+#about .reveal-item.animate-fade-up .flex-wrap > span {
+  animation: chipPop 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+#about .flex-wrap > span:nth-child(1) { animation-delay: 0.30s !important; }
+#about .flex-wrap > span:nth-child(2) { animation-delay: 0.38s !important; }
+#about .flex-wrap > span:nth-child(3) { animation-delay: 0.46s !important; }
+#about .flex-wrap > span:nth-child(4) { animation-delay: 0.54s !important; }
+#about .flex-wrap > span:nth-child(5) { animation-delay: 0.62s !important; }
+#about .flex-wrap > span:nth-child(6) { animation-delay: 0.70s !important; }
+#about .flex-wrap > span:nth-child(7) { animation-delay: 0.78s !important; }
+@keyframes chipPop {
+  from { opacity: 0; transform: scale(0.7) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* card spotlight: a purple glow follows the mouse */
+.spot {
+  position: relative;
+  --mx: 50%;
+  --my: 50%;
+  background-image: radial-gradient(
+    420px circle at var(--mx) var(--my),
+    color-mix(in srgb, var(--color-first) 16%, transparent),
+    transparent 45%
+  );
+}
+
+/* shine sweep on the main purple buttons */
+a.bg-first,
+button.bg-first {
+  position: relative;
+  overflow: hidden;
+}
+a.bg-first::after,
+button.bg-first::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+a.bg-first:hover::after,
+button.bg-first:hover::after { left: 130%; }
+
+/* back to top button */
+#back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 55;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--color-body);
+  background: var(--color-first);
+  box-shadow: 0 0 20px rgba(192, 132, 252, 0.5);
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#back-to-top:hover { transform: translateY(-4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-cursor,
+  h2.reveal::after,
+  #about .flex-wrap > span { animation: none !important; }
+  h2.reveal::after { width: 110px; }
+}
+/* =====================================================
+   12. Final overrides: slider arrows and contact form
+   ===================================================== */
+
+/* ---------- Slider arrows: small and purple ---------- */
+.projects-slider-wrapper {
+  --swiper-theme-color: #C084FC;
+  --swiper-navigation-color: #C084FC;
+  --swiper-pagination-color: #C084FC;
+}
+
+.projects-slider-wrapper .swiper-button-next,
+.projects-slider-wrapper .swiper-button-prev {
+  --swiper-navigation-size: 14px;
+  width: 34px !important;
+  height: 34px !important;
+  margin-top: -17px !important;
+  top: 45% !important;
+  color: #C084FC !important;
+  background: rgba(192, 132, 252, 0.15) !important;
+  border: 1px solid rgba(192, 132, 252, 0.6) !important;
+  border-radius: 50% !important;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.projects-slider-wrapper .swiper-button-prev { left: 10px !important; }
+.projects-slider-wrapper .swiper-button-next { right: 10px !important; }
+
+.projects-slider-wrapper .swiper-button-next::after,
+.projects-slider-wrapper .swiper-button-prev::after {
+  font-size: 13px !important;
+  font-weight: 700;
+  color: #C084FC !important;
+}
+
+/* in case the Swiper version draws the arrow as an svg */
+.projects-slider-wrapper .swiper-button-next svg,
+.projects-slider-wrapper .swiper-button-prev svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: #C084FC !important;
+}
+
+.projects-slider-wrapper .swiper-button-next:hover,
+.projects-slider-wrapper .swiper-button-prev:hover {
+  background: #C084FC !important;
+}
+.projects-slider-wrapper .swiper-button-next:hover::after,
+.projects-slider-wrapper .swiper-button-prev:hover::after {
+  color: #0B0712 !important;
+}
+.projects-slider-wrapper .swiper-button-next:hover svg,
+.projects-slider-wrapper .swiper-button-prev:hover svg {
+  fill: #0B0712 !important;
+}
+
+.projects-slider-wrapper .swiper-pagination-bullet { background: #C4B5FD !important; }
+.projects-slider-wrapper .swiper-pagination-bullet-active { background: #C084FC !important; }
+
+/* ---------- Contact form: purple fields ---------- */
+#contact form label {
+  color: #C084FC;
+  letter-spacing: 0.04em;
+}
+
+#contact form input,
+#contact form textarea {
+  width: 100%;
+  background-color: rgba(192, 132, 252, 0.10) !important;
+  border: 1px solid rgba(192, 132, 252, 0.55) !important;
+  border-radius: 0.75rem;
+  color: var(--color-title) !important;
+  caret-color: #C084FC;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#contact form input::placeholder,
+#contact form textarea::placeholder {
+  color: #C4B5FD;
+  opacity: 0.55;
+}
+
+#contact form input:focus,
+#contact form textarea:focus {
+  border-color: #C084FC !important;
+  background-color: rgba(192, 132, 252, 0.16) !important;
+  box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.28) !important;
+}
+
+/* browser autofill turns fields white or blue, this keeps them purple */
+#contact form input:-webkit-autofill,
+#contact form input:-webkit-autofill:hover,
+#contact form input:-webkit-autofill:focus,
+#contact form textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-title) !important;
+  -webkit-box-shadow: 0 0 0 1000px #2a1a4d inset !important;
+  caret-color: #C084FC;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* light mode: fields stay purple but readable */
+html.light #contact form label { color: #7E22CE; }
+html.light #contact form input,
+html.light #contact form textarea {
+  background-color: rgba(126, 34, 206, 0.06) !important;
+  border-color: rgba(126, 34, 206, 0.45) !important;
+  color: #0F172A !important;
+}
+html.light #contact form input::placeholder,
+html.light #contact form textarea::placeholder { color: #7E22CE; }
+html.light #contact form input:focus,
+html.light #contact form textarea:focus {
+  border-color: #7E22CE !important;
+  box-shadow: 0 0 0 3px rgba(126, 34, 206, 0.2) !important;
+}
+html.light #contact form input:-webkit-autofill,
+html.light #contact form textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #F3E8FF inset !important;
+}
+html.light .projects-slider-wrapper .swiper-button-next,
+html.light .projects-slider-wrapper .swiper-button-prev {
+  color: #7E22CE !important;
+  border-color: rgba(126, 34, 206, 0.6) !important;
+  background: rgba(126, 34, 206, 0.1) !important;
+}
+html.light .projects-slider-wrapper .swiper-button-next::after,
+html.light .projects-slider-wrapper .swiper-button-prev::after { color: #7E22CE !important; }
