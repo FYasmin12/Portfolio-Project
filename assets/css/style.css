@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
 
-/* --- Base Setup & Utility Styles --- */
+
 :root {
   --color-body: #0B0712;
   --color-container: #150D2A;
@@ -45,7 +45,6 @@ html {
   transform: translateY(0);
 }
 
-/* --- Interactive Hover Effects --- */
 .animated-text {
   transition: all 0.3s ease;
 }
@@ -75,7 +74,7 @@ html {
   left: 100%;
 }
 
-/* --- Adaptive Dark/Light Mode Variables --- */
+
 .dark {
   --color-body: #0B0712;
   --color-container: #150D2A;
@@ -101,11 +100,7 @@ html {
   * { animation: none !important; }
   .opacity-0 { opacity: 1 !important; }
 }
-/* =====================================================
-   9. Extra animations
-   ===================================================== */
 
-/* scroll progress bar */
 #scroll-progress {
   position: fixed;
   top: 0;
@@ -118,12 +113,12 @@ html {
   transition: width 0.1s linear;
 }
 
-/* navbar shadow after scrolling */
+
 #header.scrolled {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* active nav link with growing underline */
+
 #nav-menu a { position: relative; }
 #nav-menu a::after {
   content: '';
@@ -148,7 +143,7 @@ html {
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* section heading: underline grows when the heading appears */
+
 h2.reveal::after {
   content: '';
   display: block;
@@ -179,7 +174,6 @@ h2.reveal.animate-fade-up::after {
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* card spotlight: a purple glow follows the mouse */
 .spot {
   position: relative;
   --mx: 50%;
@@ -191,7 +185,7 @@ h2.reveal.animate-fade-up::after {
   );
 }
 
-/* shine sweep on the main purple buttons */
+
 a.bg-first,
 button.bg-first {
   position: relative;
@@ -213,7 +207,7 @@ button.bg-first::after {
 a.bg-first:hover::after,
 button.bg-first:hover::after { left: 130%; }
 
-/* back to top button */
+
 #back-to-top {
   position: fixed;
   right: 24px;
@@ -247,11 +241,7 @@ button.bg-first:hover::after { left: 130%; }
   #about .flex-wrap > span { animation: none !important; }
   h2.reveal::after { width: 110px; }
 }
-/* =====================================================
-   12. Final overrides: slider arrows and contact form
-   ===================================================== */
 
-/* ---------- Slider arrows: small and purple ---------- */
 .projects-slider-wrapper {
   --swiper-theme-color: #C084FC;
   --swiper-navigation-color: #C084FC;
@@ -283,7 +273,7 @@ button.bg-first:hover::after { left: 130%; }
   color: #C084FC !important;
 }
 
-/* in case the Swiper version draws the arrow as an svg */
+
 .projects-slider-wrapper .swiper-button-next svg,
 .projects-slider-wrapper .swiper-button-prev svg {
   width: 14px !important;
@@ -307,7 +297,7 @@ button.bg-first:hover::after { left: 130%; }
 .projects-slider-wrapper .swiper-pagination-bullet { background: #C4B5FD !important; }
 .projects-slider-wrapper .swiper-pagination-bullet-active { background: #C084FC !important; }
 
-/* ---------- Contact form: purple fields ---------- */
+
 #contact form label {
   color: #C084FC;
   letter-spacing: 0.04em;
@@ -340,7 +330,7 @@ button.bg-first:hover::after { left: 130%; }
   box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.28) !important;
 }
 
-/* browser autofill turns fields white or blue, this keeps them purple */
+
 #contact form input:-webkit-autofill,
 #contact form input:-webkit-autofill:hover,
 #contact form input:-webkit-autofill:focus,
@@ -351,7 +341,6 @@ button.bg-first:hover::after { left: 130%; }
   transition: background-color 9999s ease-in-out 0s;
 }
 
-/* light mode: fields stay purple but readable */
 html.light #contact form label { color: #7E22CE; }
 html.light #contact form input,
 html.light #contact form textarea {
