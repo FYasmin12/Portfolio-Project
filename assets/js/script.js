@@ -1,46 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-  const header = document.getElementById('header');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
+  const header = document.getElementById('header');
   const navToggle = document.getElementById('nav-toggle');
-  const navMenu = document.getElementById('nav-menu');
-  const navIcon = document.getElementById('nav-icon');
   const navLinks = document.querySelectorAll('#nav-menu a');
+  const typed = document.getElementById('typed');
 
-  const openMenu = () => {
-    if (!navMenu) return;
-    navMenu.classList.remove('-right-full');
-    navMenu.classList.add('right-0');
-    if (navIcon) navIcon.className = 'ri-close-line';
-  };
-
-  const closeMenu = () => {
-    if (!navMenu) return;
-    navMenu.classList.remove('right-0');
-    navMenu.classList.add('-right-full');
-    if (navIcon) navIcon.className = 'ri-menu-line';
-  };
-
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navMenu.classList.contains('right-0') ? closeMenu() : openMenu();
-    });
-  }
-
-  navLinks.forEach((link) => link.addEventListener('click', closeMenu));
-
-  document.addEventListener('click', (e) => {
-    if (!navMenu || !navMenu.classList.contains('right-0')) return;
-    if (!navMenu.contains(e.target) && navToggle && !navToggle.contains(e.target)) {
-      closeMenu();
-    }
-  });
-
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const themeIcon = document.getElementById('theme-icon');
   const htmlEl = document.documentElement;
+  const themeBtn = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
 
   const applyTheme = (theme) => {
     htmlEl.classList.remove('dark', 'light');
@@ -51,108 +18,58 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   let savedTheme = 'dark';
-  try {
-    savedTheme = localStorage.getItem('theme') || 'dark';
-  } catch (err) { /* storage blocked */ }
+  try { savedTheme = localStorage.getItem('theme') || 'dark'; } catch (e) {}
   applyTheme(savedTheme);
 
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const next = htmlEl.classList.contains('dark') ? 'light' : 'dark';
-      applyTheme(next);
-      try { localStorage.setItem('theme', next); } catch (err) { /* ignore */ }
-    });
-  }
+  themeBtn?.addEventListener('click', () => {
+    const next = htmlEl.classList.contains('dark') ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
 
-  const initSlider = (wrapperId, swiperSelector) => {
-    const wrapper = document.getElementById(wrapperId);
-    if (!wrapper || typeof Swiper === 'undefined') return;
-
-    new Swiper(wrapper.querySelector(swiperSelector), {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-      autoplay: reduceMotion ? false : {
-        delay: 4500,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-      },
-      pagination: {
-        el: wrapper.querySelector('.swiper-pagination'),
-        clickable: true,
-      },
-      navigation: {
-        nextEl: wrapper.querySelector('.swiper-button-next'),
-        prevEl: wrapper.querySelector('.swiper-button-prev'),
-      },
-    });
-  };
-
-  initSlider('projects-slider', '.projectsSwiper');
-  initSlider('certificates-slider', '.certificatesSwiper');
-
-
-  const visibleObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('visible');
-      visibleObserver.unobserve(entry.target);
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('.animate-on-scroll').forEach((el) => visibleObserver.observe(el));
-
+  
   const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-
-      const siblings = [...el.parentElement.children].filter((c) => c.classList.contains('reveal-item'));
-      const index = Math.max(siblings.indexOf(el), 0);
-      el.style.animationDelay = `${index * 0.12}s`;
-
-      el.classList.add('animate-fade-up');
-      revealObserver.unobserve(el);
+    entries.forEach(({ isIntersecting, target }) => {
+      if (!isIntersecting) return;
+      const siblings = [...target.parentElement.children].filter((c) => c.classList.contains('reveal-item'));
+      target.style.animationDelay = `${Math.max(siblings.indexOf(target), 0) * 0.12}s`;
+      target.classList.add('animate-fade-up');
+      revealObserver.unobserve(target);
     });
   }, { threshold: 0.15 });
 
   document.querySelectorAll('.reveal, .reveal-item').forEach((el) => revealObserver.observe(el));
 
+  
   const progressBar = document.getElementById('scroll-progress');
   const backTop = document.getElementById('back-to-top');
 
   const onScroll = () => {
     const doc = document.documentElement;
     const max = doc.scrollHeight - doc.clientHeight;
-    const progress = max > 0 ? (doc.scrollTop / max) * 100 : 0;
-
-    if (progressBar) progressBar.style.width = `${progress}%`;
-    if (header) header.classList.toggle('scrolled', doc.scrollTop > 10);
-    if (backTop) backTop.classList.toggle('show', doc.scrollTop > 600);
+    if (progressBar) progressBar.style.width = `${max > 0 ? (doc.scrollTop / max) * 100 : 0}%`;
+    header?.classList.toggle('scrolled', doc.scrollTop > 10);
+    backTop?.classList.toggle('show', doc.scrollTop > 600);
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  if (backTop) {
-    backTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-    });
-  }
+  backTop?.addEventListener('click', () =>
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
+  );
 
-
-  const sections = document.querySelectorAll('main section[id]');
+  
   const spy = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const id = entry.target.id;
-      navLinks.forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-      });
+    entries.forEach(({ isIntersecting, target }) => {
+      if (!isIntersecting) return;
+      navLinks.forEach((link) =>
+        link.classList.toggle('active', link.getAttribute('href') === `#${target.id}`)
+      );
     });
   }, { rootMargin: '-40% 0px -55% 0px' });
 
-  sections.forEach((section) => spy.observe(section));
+  document.querySelectorAll('main section[id]').forEach((s) => spy.observe(s));
 
  
   if (typed && !reduceMotion) {
@@ -181,12 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
  
-  const cards = document.querySelectorAll('main .bg-container-adaptive.rounded-2xl, main .bg-container-adaptive.rounded-3xl');
-  cards.forEach((card) => card.classList.add('spot'));
+  document
+    .querySelectorAll('main .bg-container-adaptive.rounded-2xl, main .bg-container-adaptive.rounded-3xl')
+    .forEach((card) => card.classList.add('spot'));
 
   if (!reduceMotion) {
     document.addEventListener('mousemove', (e) => {
-      const card = e.target.closest ? e.target.closest('.spot') : null;
+      const card = e.target.closest?.('.spot');
       if (!card) return;
       const rect = card.getBoundingClientRect();
       card.style.setProperty('--mx', `${e.clientX - rect.left}px`);

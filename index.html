@@ -61,6 +61,7 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
+
 </head>
 
 <body class="font-sans antialiased selection:bg-first selection:text-black relative overflow-x-hidden pt-20">
@@ -81,19 +82,27 @@
   </div>
 
 
-  <header id="header"
-    class="fixed top-0 left-0 w-full z-50 bg-container-adaptive/85 backdrop-blur-xl border-b border-adaptive transition-all duration-300 shadow-sm">
-    <nav class="w-full px-6 md:px-12 h-20 flex justify-between items-center max-w-7xl mx-auto">
+  <input type="checkbox" id="nav-toggle" class="peer hidden" />
+
+  <header id="header" class="fixed top-0 left-0 w-full z-50 bg-container-adaptive border-b border-adaptive shadow-sm transition-all duration-300
+         peer-checked:[&_.ri-menu-line]:opacity-0
+         peer-checked:[&_.ri-menu-line]:rotate-90
+         peer-checked:[&_.ri-close-line]:opacity-100
+         peer-checked:[&_.ri-close-line]:rotate-0
+         peer-checked:[&_#nav-menu]:max-md:h-[400px]">
+
+    <nav class="w-full px-6 md:px-12 h-20 flex justify-between items-center max-w-7xl mx-auto relative">
 
       <a href="#"
         class="text-title-adaptive text-2xl font-bold tracking-tight hover:text-first transition-colors flex items-center gap-0.5">
         Fahmida
       </a>
 
-      <div id="nav-menu"
-        class="fixed top-20 -right-full w-full bg-container-adaptive/95 backdrop-blur-2xl p-8 border-b border-adaptive transition-all duration-300 md:static md:w-auto md:bg-transparent md:border-none md:p-0">
+      <!-- Menu: mobile e header er thik niche, height diye open/close -->
+      <div id="nav-menu" class="absolute top-full left-0 w-full h-0 overflow-hidden bg-container-adaptive border-b border-adaptive transition-all duration-300
+             md:static md:h-auto md:w-auto md:overflow-visible md:bg-transparent md:border-none">
         <ul
-          class="flex flex-col items-center gap-y-5 md:flex-row md:gap-x-8 text-xs uppercase tracking-wider font-semibold">
+          class="flex flex-col items-center gap-y-5 py-8 md:flex-row md:gap-x-8 md:py-0 text-xs uppercase tracking-wider font-semibold">
           <li><a href="#home" class="hover:text-first-adaptive transition-colors py-1">Home</a></li>
           <li><a href="#about" class="hover:text-first-adaptive transition-colors py-1">About</a></li>
           <li><a href="#education" class="hover:text-first-adaptive transition-colors py-1">Education</a></li>
@@ -111,18 +120,22 @@
           <i id="theme-icon" class="ri-moon-line text-lg"></i>
         </button>
 
-        <div id="nav-toggle"
-          class="text-2xl cursor-pointer md:hidden text-title-adaptive hover:text-first-adaptive transition-colors">
-          <i id="nav-icon" class="ri-menu-line"></i>
-        </div>
+        <label for="nav-toggle" aria-label="Toggle Menu"
+          class="text-2xl cursor-pointer md:hidden text-title-adaptive hover:text-first-adaptive transition-colors relative w-6 h-6 flex items-center justify-center">
+          <i class="ri-menu-line absolute transition-all duration-300"></i>
+          <i class="ri-close-line absolute transition-all duration-300 opacity-0 -rotate-90"></i>
+        </label>
       </div>
+
     </nav>
   </header>
 
 
+  <div class="h-0 md:hidden transition-all duration-300 peer-checked:h-[400px]"></div>
+
   <main class="max-w-5xl mx-auto px-6 md:px-10 pt-10 relative z-10 space-y-24">
 
-    <!-- Hero Section -->
+
     <section id="home" class="min-h-[75vh] flex flex-col md:flex-row items-center justify-between gap-12 py-8">
       <div class="space-y-6 max-w-xl">
 
@@ -317,118 +330,141 @@
         Featured <span class="text-first-adaptive">Projects</span>
       </h2>
 
-      <div id="projects-slider" class="reveal-item opacity-0 projects-slider-wrapper">
-        <div class="swiper projectsSwiper pb-12">
-          <div class="swiper-wrapper">
+      <div id="projects-slider" class="reveal-item opacity-0">
+        <div
+          class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth overscroll-x-contain gap-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 
-            <div class="swiper-slide !h-auto">
+          <!-- Project 1 -->
+          <div id="proj-1" class="project-slide snap-center shrink-0 w-full scroll-mt-[35vh]">
+            <div
+              class="group bg-container-adaptive rounded-2xl p-4 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-5 md:gap-8 items-center">
               <div
-                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
-                <div
-                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
-                  <img src="assets/images/iiuc_nexus.jpeg" alt="IIUC Nexus App"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                <img src="assets/images/iiuc_nexus.jpeg" alt="IIUC Nexus App"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="w-full md:w-3/5 flex flex-col justify-center gap-4">
+                <div>
+                  <span class="text-xs text-first-adaptive font-mono font-semibold">Flutter · Laravel · Appwrite</span>
+                  <h3 class="text-2xl md:text-3xl font-bold text-title-adaptive mt-1 mb-3">IIUC Nexus</h3>
+                  <p class="text-base opacity-90 leading-relaxed">
+                    An IIUC community platform with secure dual-backend, serverless email verification, and an
+                    integrated AI university assistant.
+                  </p>
                 </div>
-                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
-                  <div>
-                    <span class="text-xs text-first-adaptive font-mono font-semibold">Flutter · Laravel ·
-                      Appwrite</span>
-                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">IIUC Nexus</h3>
-                    <p class="text-sm opacity-90 leading-relaxed">
-                      An IIUC community platform with secure dual-backend, serverless email verification, and an
-                      integrated AI university assistant.
-                    </p>
-                  </div>
-                  <div class="flex items-center gap-3 pt-1">
-                    <a href="https://drive.google.com/drive/u/0/folders/1CtutYE4ue9lxueNeHXYcYnTGWKRLOzeR"
-                      target="_blank" rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
-                      Download APK <i class="ri-download-2-line"></i>
-                    </a>
-                    <a href="https://github.com/Noshi26/iiuc_nexsus_empowering_links" target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
-                      Code <i class="ri-github-line"></i>
-                    </a>
-                  </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <a href="https://drive.google.com/drive/u/0/folders/1CtutYE4ue9lxueNeHXYcYnTGWKRLOzeR" target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                    Download APK <i class="ri-download-2-line"></i>
+                  </a>
+                  <a href="https://github.com/Noshi26/iiuc_nexsus_empowering_links" target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                    Code <i class="ri-github-line"></i>
+                  </a>
                 </div>
               </div>
             </div>
-
-
-            <div class="swiper-slide !h-auto">
-              <div
-                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
-                <div
-                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
-                  <img src="assets/images/nfc-auth.png" alt="NFC Product Authentication"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
-                  <div>
-                    <span class="text-xs text-first-adaptive font-mono font-semibold">PHP · MySQL · JS ·
-                      Bootstrap</span>
-                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">NFC Product Authentication</h3>
-                    <p class="text-sm opacity-90 leading-relaxed">
-                      An NFC based web platform built to provide real-time product verification to let a user know
-                      whether a product is authentic or not, along with expiry alerts.
-                    </p>
-                  </div>
-                  <div class="flex items-center gap-3 pt-1">
-                    <a href="https://nfc-auth.42web.io/index.php" target="_blank" rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
-                      View Live <i class="ri-external-link-line"></i>
-                    </a>
-                    <a href="https://github.com/FYasmin12/NFC-Product-Authentication" target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
-                      Code <i class="ri-github-line"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
+            <div class="flex items-center justify-center gap-5 mt-3">
+              <a href="#proj-3" aria-label="Previous project"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-left-s-line"></i></a>
+              <span class="text-xs font-mono text-first-adaptive">1 / 3</span>
+              <a href="#proj-2" aria-label="Next project"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-right-s-line"></i></a>
             </div>
-
-            <div class="swiper-slide !h-auto">
-              <div
-                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
-                <div
-                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
-                  <img src="assets/images/hotel.png" alt="Hotel Management System"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
-                  <div>
-                    <span class="text-xs text-first-adaptive font-mono font-semibold">Django · HTML · CSS ·
-                      Bootstrap</span>
-                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">Hotel Management System</h3>
-                    <p class="text-sm opacity-90 leading-relaxed">
-                      A hotel management system with room availability sorting and booking, including automated email
-                      confirmations.
-                    </p>
-                  </div>
-                  <div class="flex items-center gap-3 pt-1">
-                    <a href="https://fyasmin12.github.io/Hotel-Management-System/" target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
-                      View Live <i class="ri-external-link-line"></i>
-                    </a>
-                    <a href="https://github.com/FYasmin12/Hotel-Management-System" target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
-                      Code <i class="ri-github-line"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
-          <div class="swiper-pagination"></div>
-        </div>
 
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+          <!-- Project 2 -->
+          <div id="proj-2" class="project-slide snap-center shrink-0 w-full scroll-mt-[35vh]">
+            <div
+              class="group bg-container-adaptive rounded-2xl p-4 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-5 md:gap-8 items-center">
+              <div
+                class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                <img src="assets/images/nfc-auth.png" alt="NFC Product Authentication"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="w-full md:w-3/5 flex flex-col justify-center gap-4">
+                <div>
+                  <span class="text-xs text-first-adaptive font-mono font-semibold">PHP · MySQL · JS · Bootstrap</span>
+                  <h3 class="text-2xl md:text-3xl font-bold text-title-adaptive mt-1 mb-3">NFC Product Authentication
+                  </h3>
+                  <p class="text-base opacity-90 leading-relaxed">
+                    An NFC based web platform built to provide real-time product verification to let a user know whether
+                    a product is authentic or not, along with expiry alerts.
+                  </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <a href="https://nfc-auth.42web.io/index.php" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                    View Live <i class="ri-external-link-line"></i>
+                  </a>
+                  <a href="https://github.com/FYasmin12/NFC-Product-Authentication" target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                    Code <i class="ri-github-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-center gap-5 mt-3">
+              <a href="#proj-1" aria-label="Previous project"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-left-s-line"></i></a>
+              <span class="text-xs font-mono text-first-adaptive">2 / 3</span>
+              <a href="#proj-3" aria-label="Next project"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-right-s-line"></i></a>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div id="proj-3" class="project-slide snap-center shrink-0 w-full scroll-mt-[35vh]">
+            <div
+              class="group bg-container-adaptive rounded-2xl p-4 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-5 md:gap-8 items-center">
+              <div
+                class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                <img src="assets/images/hotel.png" alt="Hotel Management System"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="w-full md:w-3/5 flex flex-col justify-center gap-4">
+                <div>
+                  <span class="text-xs text-first-adaptive font-mono font-semibold">Django · HTML · CSS ·
+                    Bootstrap</span>
+                  <h3 class="text-2xl md:text-3xl font-bold text-title-adaptive mt-1 mb-3">Hotel Management System</h3>
+                  <p class="text-base opacity-90 leading-relaxed">
+                    A hotel management system with room availability sorting and booking, including automated email
+                    confirmations.
+                  </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <a href="https://fyasmin12.github.io/Hotel-Management-System/" target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                    View Live <i class="ri-external-link-line"></i>
+                  </a>
+                  <a href="https://github.com/FYasmin12/Hotel-Management-System" target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                    Code <i class="ri-github-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-center gap-5 mt-3">
+              <a href="#proj-2" aria-label="Previous project"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-left-s-line"></i></a>
+              <span class="text-xs font-mono text-first-adaptive">3 / 3</span>
+              <a href="#proj-1" aria-label="Next project"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-right-s-line"></i></a>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -485,154 +521,186 @@
         Achievements & <span class="text-first-adaptive">Certificates</span>
       </h2>
 
-      <div id="certificates-slider" class="reveal-item opacity-0 projects-slider-wrapper">
-        <div class="swiper certificatesSwiper pb-12">
-          <div class="swiper-wrapper">
+      <div id="certificates-slider" class="reveal-item opacity-0">
+        <div
+          class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth overscroll-x-contain gap-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 
-
-            <div class="swiper-slide !h-auto">
+          <!-- Certificate 1 -->
+          <div id="cert-1" class="cert-slide snap-center shrink-0 w-full scroll-mt-[35vh]">
+            <div
+              class="group bg-container-adaptive rounded-2xl p-4 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-5 md:gap-8 items-center">
               <div
-                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
-                <div
-                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
-                  <img src="assets/images/best female.png" alt="Best Female Team Award"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onerror="this.src='https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=800&auto=format&fit=crop'" />
+                class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                <img src="assets/images/best female.png" alt="Best Female Team Award"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onerror="this.src='https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=800&auto=format&fit=crop'" />
+              </div>
+              <div class="w-full md:w-3/5 flex flex-col justify-center gap-4">
+                <div>
+                  <span class="text-xs text-first-adaptive font-mono font-semibold">Jun 2026 · IIUC CSE Fest 2026</span>
+                  <h3 class="text-2xl md:text-3xl font-bold text-title-adaptive mt-1 mb-3">Best Female Team Award</h3>
+                  <p class="text-base opacity-90 leading-relaxed">
+                    Awarded for securing the Best Female Team Award in Project Showcase Competition at IIUC CSE Fest
+                    2026 for IIUC Nexus.
+                  </p>
                 </div>
-                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
-                  <div>
-                    <span class="text-xs text-first-adaptive font-mono font-semibold">Jun 2026 · IIUC CSE Fest
-                      2026</span>
-                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">Best Female Team Award</h3>
-                    <p class="text-sm opacity-90 leading-relaxed">
-                      Awarded for securing the Best Female Team Award in Project Showcase Competition at IIUC CSE Fest
-                      2026 for IIUC Nexus.
-                    </p>
-                  </div>
-                  <div class="flex flex-wrap items-center gap-3 pt-1">
-                    <a href="assets/certificates/Best Female_IIUC Nexus.pdf" target="_blank"
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
-                      View PDF <i class="ri-file-pdf-line"></i>
-                    </a>
-                    <a href="assets/certificates/Best Female_IIUC Nexus.pdf" download
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
-                      Download <i class="ri-download-line"></i>
-                    </a>
-                  </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <a href="assets/certificates/Best Female_IIUC Nexus.pdf" target="_blank"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                    View PDF <i class="ri-file-pdf-line"></i>
+                  </a>
+                  <a href="assets/certificates/Best Female_IIUC Nexus.pdf" download
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                    Download <i class="ri-download-line"></i>
+                  </a>
                 </div>
               </div>
             </div>
-
-
-            <div class="swiper-slide !h-auto">
-              <div
-                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
-                <div
-                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
-                  <img src="assets/images/research seminar.png" alt="AI Seminar Certificate of Participation"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onerror="this.src='https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop'" />
-                </div>
-                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
-                  <div>
-                    <span class="text-xs text-first-adaptive font-mono font-semibold">2026 · IIUC CSE Fest 2026</span>
-                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">AI Seminar Participation</h3>
-                    <p class="text-sm opacity-90 leading-relaxed">
-                      Certificate of Participation for the AI Seminar "Trust, Transparency, Optimization: Rethinking AI
-                      Systems for Real-World Adoption", organized by IIUC Computer Club.
-                    </p>
-                  </div>
-                  <div class="flex flex-wrap items-center gap-3 pt-1">
-                    <a href="assets/certificates/C223210_Fahmida Yasmin.pdf" target="_blank"
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
-                      View PDF <i class="ri-file-pdf-line"></i>
-                    </a>
-                    <a href="assets/certificates/C223210_Fahmida Yasmin.pdf" download
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
-                      Download <i class="ri-download-line"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
+            <div class="flex items-center justify-center gap-5 mt-3">
+              <a href="#cert-4" aria-label="Previous certificate"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-left-s-line"></i></a>
+              <span class="text-xs font-mono text-first-adaptive">1 / 4</span>
+              <a href="#cert-2" aria-label="Next certificate"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-right-s-line"></i></a>
             </div>
-
-
-            <div class="swiper-slide !h-auto">
-              <div
-                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
-                <div
-                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
-                  <img src="assets/images/nfc paper.png" alt="IDAA 2025 Certificate"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop'" />
-                </div>
-                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
-                  <div>
-                    <span class="text-xs text-first-adaptive font-mono font-semibold">Dec 2025 · IDAA 2025 / Taylor &
-                      Francis</span>
-                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">IDAA 2025 Paper Acceptance</h3>
-                    <p class="text-sm opacity-90 leading-relaxed">
-                      Certificate of Appreciation for paper "An Efficient NFC Blockchain Model For Detecting Counterfeit
-                      And Expired Products" presented at IDAA 2025.
-                    </p>
-                  </div>
-                  <div class="flex flex-wrap items-center gap-3 pt-1">
-                    <a href="assets/certificates/An Efficient NFC Blockchain Model for Detecting Counterfeit and Expired Products.pdf"
-                      target="_blank"
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
-                      View PDF <i class="ri-file-pdf-line"></i>
-                    </a>
-                    <a href="assets/certificates/An Efficient NFC Blockchain Model for Detecting Counterfeit and Expired Products.pdf"
-                      download
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
-                      Download <i class="ri-download-line"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="swiper-slide !h-auto">
-              <div
-                class="group bg-container-adaptive rounded-2xl p-5 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-6 items-center min-h-[280px] h-full">
-                <div
-                  class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
-                  <img src="assets/images/mern 1day workshop.png" alt="MERN Stack Workshop Certificate"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onerror="this.src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop'" />
-                </div>
-                <div class="w-full md:w-3/5 flex flex-col justify-between space-y-3">
-                  <div>
-                    <span class="text-xs text-first-adaptive font-mono font-semibold">Oct 2024 · Creative IT & IEEE CS
-                      BDC</span>
-                    <h3 class="text-xl font-bold text-title-adaptive mt-1 mb-2">MERN Stack Workshop</h3>
-                    <p class="text-sm opacity-90 leading-relaxed">
-                      Successfully completed MERN Stack Development Workshop organized by Creative IT Institute in
-                      association with IEEE CS BDC Team SPARK.
-                    </p>
-                  </div>
-                  <div class="flex flex-wrap items-center gap-3 pt-1">
-                    <a href="assets/certificates/MERN Stack development Workshop.pdf" target="_blank"
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
-                      View PDF <i class="ri-file-pdf-line"></i>
-                    </a>
-                    <a href="assets/certificates/MERN Stack Development Workshop.pdf" download
-                      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
-                      Download <i class="ri-download-line"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
-          <div class="swiper-pagination"></div>
-        </div>
 
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+          <!-- Certificate 2 -->
+          <div id="cert-2" class="cert-slide snap-center shrink-0 w-full scroll-mt-[35vh]">
+            <div
+              class="group bg-container-adaptive rounded-2xl p-4 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-5 md:gap-8 items-center">
+              <div
+                class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                <img src="assets/images/research seminar.png" alt="AI Seminar Certificate of Participation"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onerror="this.src='https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop'" />
+              </div>
+              <div class="w-full md:w-3/5 flex flex-col justify-center gap-4">
+                <div>
+                  <span class="text-xs text-first-adaptive font-mono font-semibold">2026 · IIUC CSE Fest 2026</span>
+                  <h3 class="text-2xl md:text-3xl font-bold text-title-adaptive mt-1 mb-3">AI Seminar Participation</h3>
+                  <p class="text-base opacity-90 leading-relaxed">
+                    Certificate of Participation for the AI Seminar "Trust, Transparency, Optimization: Rethinking AI
+                    Systems for Real-World Adoption", organized by IIUC Computer Club.
+                  </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <a href="assets/certificates/C223210_Fahmida Yasmin.pdf" target="_blank"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                    View PDF <i class="ri-file-pdf-line"></i>
+                  </a>
+                  <a href="assets/certificates/C223210_Fahmida Yasmin.pdf" download
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                    Download <i class="ri-download-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-center gap-5 mt-3">
+              <a href="#cert-1" aria-label="Previous certificate"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-left-s-line"></i></a>
+              <span class="text-xs font-mono text-first-adaptive">2 / 4</span>
+              <a href="#cert-3" aria-label="Next certificate"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-right-s-line"></i></a>
+            </div>
+          </div>
+
+          <!-- Certificate 3 -->
+          <div id="cert-3" class="cert-slide snap-center shrink-0 w-full scroll-mt-[35vh]">
+            <div
+              class="group bg-container-adaptive rounded-2xl p-4 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-5 md:gap-8 items-center">
+              <div
+                class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                <img src="assets/images/nfc paper.png" alt="IDAA 2025 Certificate"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop'" />
+              </div>
+              <div class="w-full md:w-3/5 flex flex-col justify-center gap-4">
+                <div>
+                  <span class="text-xs text-first-adaptive font-mono font-semibold">Dec 2025 · IDAA 2025 / Taylor &amp;
+                    Francis</span>
+                  <h3 class="text-2xl md:text-3xl font-bold text-title-adaptive mt-1 mb-3">IDAA 2025 Paper Acceptance
+                  </h3>
+                  <p class="text-base opacity-90 leading-relaxed">
+                    Certificate of Appreciation for paper "An Efficient NFC Blockchain Model For Detecting Counterfeit
+                    And Expired Products" presented at IDAA 2025.
+                  </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <a href="assets/certificates/An Efficient NFC Blockchain Model for Detecting Counterfeit and Expired Products.pdf"
+                    target="_blank"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                    View PDF <i class="ri-file-pdf-line"></i>
+                  </a>
+                  <a href="assets/certificates/An Efficient NFC Blockchain Model for Detecting Counterfeit and Expired Products.pdf"
+                    download
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                    Download <i class="ri-download-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-center gap-5 mt-3">
+              <a href="#cert-2" aria-label="Previous certificate"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-left-s-line"></i></a>
+              <span class="text-xs font-mono text-first-adaptive">3 / 4</span>
+              <a href="#cert-4" aria-label="Next certificate"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-right-s-line"></i></a>
+            </div>
+          </div>
+
+          <!-- Certificate 4 -->
+          <div id="cert-4" class="cert-slide snap-center shrink-0 w-full scroll-mt-[35vh]">
+            <div
+              class="group bg-container-adaptive rounded-2xl p-4 md:p-6 border border-adaptive hover:border-first/60 hover:shadow-[0_0_30px_rgba(192,132,252,0.15)] transition-all duration-500 flex flex-col md:flex-row gap-5 md:gap-8 items-center">
+              <div
+                class="img-frame w-full md:w-2/5 h-48 md:h-64 bg-icon-box-adaptive rounded-xl overflow-hidden border border-adaptive relative shrink-0">
+                <img src="assets/images/mern 1day workshop.png" alt="MERN Stack Workshop Certificate"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onerror="this.src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop'" />
+              </div>
+              <div class="w-full md:w-3/5 flex flex-col justify-center gap-4">
+                <div>
+                  <span class="text-xs text-first-adaptive font-mono font-semibold">Oct 2024 · Creative IT &amp; IEEE CS
+                    BDC</span>
+                  <h3 class="text-2xl md:text-3xl font-bold text-title-adaptive mt-1 mb-3">MERN Stack Workshop</h3>
+                  <p class="text-base opacity-90 leading-relaxed">
+                    Successfully completed MERN Stack Development Workshop organized by Creative IT Institute in
+                    association with IEEE CS BDC Team SPARK.
+                  </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <a href="assets/certificates/MERN Stack Development Workshop.pdf" target="_blank"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-black bg-first rounded-lg hover:bg-first-hover transition-all">
+                    View PDF <i class="ri-file-pdf-line"></i>
+                  </a>
+                  <a href="assets/certificates/MERN Stack Development Workshop.pdf" download
+                    class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-title-adaptive border border-adaptive rounded-lg hover:bg-first/10 transition-all">
+                    Download <i class="ri-download-line"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-center gap-5 mt-3">
+              <a href="#cert-3" aria-label="Previous certificate"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-left-s-line"></i></a>
+              <span class="text-xs font-mono text-first-adaptive">4 / 4</span>
+              <a href="#cert-1" aria-label="Next certificate"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-first/60 bg-first/15 text-first-adaptive hover:bg-first hover:text-black transition-all"><i
+                  class="ri-arrow-right-s-line"></i></a>
+            </div>
+          </div>
+
+        </div>
       </div>
+    </section>
     </section>
 
 
