@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const header = document.getElementById('header');
-  const navToggle = document.getElementById('nav-toggle');
   const navLinks = document.querySelectorAll('#nav-menu a');
   const typed = document.getElementById('typed');
 
